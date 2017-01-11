@@ -1,21 +1,71 @@
 export default {
-  "nodes": [
-    {"id": "easylearn_user", "label": "easylearn_user", "group": 1},
-    {"id": "easylearn_web", "label": "easylearn_web", "group": 1},
-    {"id": "easylearn_pack", "label": "easylearn_pack", "group": 1},
-    {"id": "easylearn_webback", "label": "easylearn_webback", "group": 1},
-    {"id": "easylearn_note", "label": "easylearn_note", "group": 1},
-    {"id": "easylearn_pack endpoint / GET", "label":"/ GET", "group": 2},
-    {"id": "easylearn_user endpoint / GET", "label":"/ GET", "group": 2},
-    {"id": "easylearn_note endpoint / POST", "label":"/ POST", "group": 2}
+  "nodes" : [
+    {
+      "id": "easylearn_user",
+      "label": "easylearn_user",
+      "group": 1,
+      "class": "mgp-path-1",
+    }, {
+      "id": "easylearn_web",
+      "label": "easylearn_web",
+      "group": 1,
+      "class": "",
+    }, {
+      "id": "easylearn_pack",
+      "label": "easylearn_pack",
+      "group": 1,
+      "class": "mgp-path-1",
+    }, {
+      "id": "easylearn_webback",
+      "label": "easylearn_webback",
+      "group": 1,
+      "class": "",
+    }, {
+      "id": "easylearn_note",
+      "label": "easylearn_note",
+      "group": 1,
+      "class": "",
+    }, {
+      "id": "easylearn_pack endpoint / GET",
+      "label": "/ GET",
+      "group": 2,
+      "class": "mgp-path-1 mgp-path-1-start",
+    }, {
+      "id": "easylearn_user endpoint / GET",
+      "label": "/ GET",
+      "group": 2,
+      "class": "mgp-path-1",
+    }, {
+      "id": "easylearn_note endpoint / POST",
+      "label": "/ POST",
+      "group": 2,
+      "class": "",
+    },
   ],
-  "links": [
-    {"source": "easylearn_pack", "target": "easylearn_user endpoint / GET"},
-    {"source": "easylearn_pack", "target": "easylearn_note endpoint / POST"}
+  "serviceCall" : [
+    {
+      "source": "easylearn_pack",
+      "target": "easylearn_user endpoint / GET",
+      "class": "mgp-path-1",
+    }, {
+      "source": "easylearn_pack",
+      "target": "easylearn_note endpoint / POST",
+      "class": "",
+    },
   ],
-  "servicesDep": [
-  {"source": "easylearn_pack endpoint / GET", "target": "easylearn_pack"},
-  {"source": "easylearn_user endpoint / GET", "target": "easylearn_user"},
-  {"source": "easylearn_note endpoint / POST", "target": "easylearn_note"}
+  "endpoints" : [
+    {
+      "source": "easylearn_pack endpoint / GET",
+      "target": "easylearn_pack",
+      "class": "mgp-path-1",
+    }, {
+      "source": "easylearn_user endpoint / GET",
+      "target": "easylearn_user",
+      "class": "mgp-path-1",
+    }, {
+      "source": "easylearn_note endpoint / POST",
+      "target": "easylearn_note",
+      "class": "",
+    },
   ]
 };

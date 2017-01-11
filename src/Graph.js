@@ -31,18 +31,22 @@ function draw(graph){
   var link = svg.append("g")
     .attr("class", "links")
     .selectAll("path")
-    .data(graph.links)
+    .data(graph.serviceCall)
     .enter().append("svg:path")
-    .attr("class", "link")
-    .attr("marker-end", "url(#end-arrow)");
+    .attr("marker-end", "url(#end-arrow)")
+    .attr('class', function (d) {
+      return "link " + d.class
+    });
 
   var servicesDep = svg.append("g")
     .attr("class", "links")
     .selectAll("line")
-    .data(graph.servicesDep)
+    .data(graph.endpoints)
     .enter()
     .append("line")
-    .attr("class", "servicelink");
+    .attr('class', function (d) {
+      return "servicelink " + d.class
+    });
 
   var group = svg.append("g")
     .attr("class", "nodes")
@@ -59,10 +63,37 @@ function draw(graph){
     .attr("fill", function(d) {
       return color(d.group);
     })
+    .attr('class', function (d) {
+      return d.class
+    })
+    .on('mouseover', onMouseOver)
+    .on('mouseout', onMouseOut)
     .call(d3.drag()
       .on("start", dragstarted)
       .on("drag", dragged)
       .on("end", dragended));
+
+  function onMouseOver(obj, index, elementArray){
+    let s = document.getElementsByClassName(obj.class);
+
+    var i;
+    for (i = 0;i < s.length; i++) {
+        s[i].setAttribute('style', "stroke: red; stroke-width: 4px;");
+        if(s[i].className.baseVal.includes("start"))
+          s[i].setAttribute('style', "stroke: green; stroke-width: 4px;");
+    }
+  }
+
+
+  function onMouseOut(obj, index, elementArray){
+    let s = document.getElementsByClassName(obj.class);
+
+    var i;
+    for (i = 0;i < s.length; i++) {
+        // s[i].setAttribute('fill' ,'#63fff3');
+        s[i].setAttribute('style', "");
+    }
+  }
 
   group.append("text")
     .attr('text-anchor', 'middle')
@@ -78,8 +109,8 @@ function draw(graph){
     .on("tick", ticked);
 
   simulation.force("link")
-    .links(graph.servicesDep)
-    .links(graph.links);
+    .links(graph.serviceCall)
+    .links(graph.endpoints);
 
 
     function ticked() {
