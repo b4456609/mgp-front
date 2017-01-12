@@ -1,0 +1,94 @@
+
+
+let initState = {
+  data: {
+    "nodes" : [
+      {
+        "id": "easylearn_user",
+        "label": "easylearn_user",
+        "group": 1,
+        "class": "mgp-path-1",
+      }, {
+        "id": "easylearn_web",
+        "label": "easylearn_web",
+        "group": 1,
+        "class": "",
+      }, {
+        "id": "easylearn_pack",
+        "label": "easylearn_pack",
+        "group": 1,
+        "class": "mgp-path-1",
+      }, {
+        "id": "easylearn_webback",
+        "label": "easylearn_webback",
+        "group": 1,
+        "class": "",
+      }, {
+        "id": "easylearn_note",
+        "label": "easylearn_note",
+        "group": 1,
+        "class": "",
+      }, {
+        "id": "easylearn_pack endpoint / GET",
+        "label": "/ GET",
+        "group": 2,
+        "class": "mgp-path-1 mgp-path-1-start",
+      }, {
+        "id": "easylearn_user endpoint / GET",
+        "label": "/ GET",
+        "group": 2,
+        "class": "mgp-path-1",
+      }, {
+        "id": "easylearn_note endpoint / POST",
+        "label": "/ POST",
+        "group": 2,
+        "class": "",
+      },
+    ],
+    "serviceCall" : [
+      {
+        "source": "easylearn_pack",
+        "target": "easylearn_user endpoint / GET",
+        "class": "mgp-path-1",
+      }, {
+        "source": "easylearn_pack",
+        "target": "easylearn_note endpoint / POST",
+        "class": "",
+      },
+    ],
+    "endpoints" : [
+      {
+        "source": "easylearn_pack endpoint / GET",
+        "target": "easylearn_pack",
+        "class": "mgp-path-1",
+      }, {
+        "source": "easylearn_user endpoint / GET",
+        "target": "easylearn_user",
+        "class": "mgp-path-1",
+      }, {
+        "source": "easylearn_note endpoint / POST",
+        "target": "easylearn_note",
+        "class": "",
+      },
+    ]
+  }
+};
+
+if (process.env.NODE_ENV === 'production') {
+  initState = {
+    initState: 'init',
+    packFetch: false,
+    folderFetch: false,
+  };
+}
+
+const app = (state = initState, action) => {
+  switch (action.type) {
+    // case PACK_FETCHING:
+    //   return Object.assign({}, state, { packFetch: true });
+    default:
+      return state;
+  }
+};
+
+export default app;

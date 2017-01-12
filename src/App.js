@@ -8,7 +8,7 @@ import {
   Col,
 } from 'react-bootstrap';
 import './App.css';
-import Graph from './Graph.js';
+import GraphContainer from './components/graph/GraphContainer.js';
 import ServiceEndpointInfo from './components/sidebar/ServiceEndpointInfo.js';
 import ServiceInfo from './components/sidebar/ServiceInfo.js';
 import ServiceCallInfo from './components/sidebar/ServiceCallInfo.js';
@@ -37,7 +37,7 @@ class App extends Component {
         <Grid fluid>
           <Row>
             <Col md={9}>
-              <Graph data={this.fetchService()} />
+              <GraphContainer />
             </Col>
             <Col md={3}>
               <ServiceEndpointInfo />
