@@ -176,7 +176,13 @@ class Graph extends Component {
   }
 
   componentDidMount() {
-    draw(this.props.data);
+    this.props.getGraphData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if('serviceCall' in this.props.data){
+      draw(this.props.data);
+    }
   }
 
   render() {

@@ -12,10 +12,11 @@ import GraphContainer from './components/graph/GraphContainer.js';
 import ServiceEndpointInfo from './components/sidebar/ServiceEndpointInfo.js';
 import ServiceInfo from './components/sidebar/ServiceInfo.js';
 import ServiceCallInfo from './components/sidebar/ServiceCallInfo.js';
+import {getGraphData} from './actions';
 
 class App extends Component {
-  fetchService(){
-    return fetch('test.json');
+  componentDidMount() {
+    getGraphData();
   }
   render() {
     return (

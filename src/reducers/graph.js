@@ -1,4 +1,4 @@
-
+import {GRAPH_LOADED} from '../actions';
 
 let initState = {
   data: {
@@ -82,10 +82,10 @@ if (process.env.NODE_ENV === 'production') {
   };
 }
 
-const app = (state = initState, action) => {
+const app = (state = {data:{}}, action) => {
   switch (action.type) {
-    // case PACK_FETCHING:
-    //   return Object.assign({}, state, { packFetch: true });
+    case GRAPH_LOADED:
+      return Object.assign({}, state, { data: action.data });
     default:
       return state;
   }
