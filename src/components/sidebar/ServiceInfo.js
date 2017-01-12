@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {
   Panel,
-  Tabs,
-  Tab,
   Button,
   Table,
 } from 'react-bootstrap';

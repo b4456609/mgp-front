@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {
   Panel,
-  Tabs,
-  Tab,
-  Button,
-  Table,
 } from 'react-bootstrap';
 import Highlight from 'react-highlight';
 import {js_beautify} from 'js-beautify';

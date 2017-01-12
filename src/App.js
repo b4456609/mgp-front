@@ -3,22 +3,20 @@ import {
   Navbar,
   Nav,
   NavItem,
-  NavDropdown,
-  MenuItem,
   Grid,
   Row,
   Col,
-  Panel,
 } from 'react-bootstrap';
-import logo from './logo.svg';
 import './App.css';
 import Graph from './Graph.js';
-import Services from './Services.js';
 import ServiceEndpointInfo from './components/sidebar/ServiceEndpointInfo.js';
 import ServiceInfo from './components/sidebar/ServiceInfo.js';
 import ServiceCallInfo from './components/sidebar/ServiceCallInfo.js';
 
 class App extends Component {
+  fetchService(){
+    return fetch('test.json');
+  }
   render() {
     return (
       <div>
@@ -39,7 +37,7 @@ class App extends Component {
         <Grid fluid>
           <Row>
             <Col md={9}>
-              <Graph data={Services} />
+              <Graph data={this.fetchService()} />
             </Col>
             <Col md={3}>
               <ServiceEndpointInfo />
