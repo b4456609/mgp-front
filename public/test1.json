@@ -1,0 +1,190 @@
+{
+  "serviceWithEndpointPair": [
+    {
+      "source": "easylearn-note endpoint / POST",
+      "class": "",
+      "target": "easylearn-note"
+    },
+    {
+      "source": "easylearn-pack endpoint /{packId}/version POST",
+      "class": "",
+      "target": "easylearn-pack"
+    },
+    {
+      "source": "easylearn-pack endpoint / POST",
+      "class": "",
+      "target": "easylearn-pack"
+    },
+    {
+      "source": "easylearn-pack endpoint / GET",
+      "class": "",
+      "target": "easylearn-pack"
+    },
+    {
+      "source": "easylearn-pack endpoint /version PUT",
+      "class": "",
+      "target": "easylearn-pack"
+    },
+    {
+      "source": "easylearn-user endpoint /login POST",
+      "class": "",
+      "target": "easylearn-user"
+    },
+    {
+      "source": "easylearn-user endpoint /folder PUT",
+      "class": "",
+      "target": "easylearn-user"
+    },
+    {
+      "source": "easylearn-user endpoint /folder/pack/{id} DELETE",
+      "class": "",
+      "target": "easylearn-user"
+    },
+    {
+      "source": "easylearn-user endpoint /folder POST",
+      "class": "",
+      "target": "easylearn-user"
+    },
+    {
+      "source": "easylearn-user endpoint /pack GET",
+      "class": "",
+      "target": "easylearn-user"
+    },
+    {
+      "source": "easylearn-user endpoint /folder/{id} DELETE",
+      "class": "",
+      "target": "easylearn-user"
+    },
+    {
+      "source": "easylearn-user endpoint /folder GET",
+      "class": "",
+      "target": "easylearn-user"
+    },
+    {
+      "source": "easylearn-webback endpoint /note POST",
+      "class": "",
+      "target": "easylearn-webback"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "easylearn-note",
+      "label": "easylearn-note",
+      "class": "",
+      "group": 1
+    },
+    {
+      "id": "easylearn-note endpoint / POST",
+      "label": "/ POST",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-pack",
+      "label": "easylearn-pack",
+      "class": "",
+      "group": 1
+    },
+    {
+      "id": "easylearn-pack endpoint /{packId}/version POST",
+      "label": "/{packId}/version POST",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-pack endpoint / POST",
+      "label": "/ POST",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-pack endpoint / GET",
+      "label": "/ GET",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-pack endpoint /version PUT",
+      "label": "/version PUT",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-user",
+      "label": "easylearn-user",
+      "class": "",
+      "group": 1
+    },
+    {
+      "id": "easylearn-user endpoint /login POST",
+      "label": "/login POST",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-user endpoint /folder PUT",
+      "label": "/folder PUT",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-user endpoint /folder/pack/{id} DELETE",
+      "label": "/folder/pack/{id} DELETE",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-user endpoint /folder POST",
+      "label": "/folder POST",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-user endpoint /pack GET",
+      "label": "/pack GET",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-user endpoint /folder/{id} DELETE",
+      "label": "/folder/{id} DELETE",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-user endpoint /folder GET",
+      "label": "/folder GET",
+      "class": "",
+      "group": 2
+    },
+    {
+      "id": "easylearn-webback",
+      "label": "easylearn-webback",
+      "class": "",
+      "group": 1
+    },
+    {
+      "id": "easylearn-webback endpoint /note POST",
+      "label": "/note POST",
+      "class": "",
+      "group": 2
+    }
+  ],
+  "providerEndpointWithConsumerPair": [
+    {
+      "source": "easylearn-pack",
+      "class": "",
+      "target": "easylearn-user endpoint /pack GET"
+    },
+    {
+      "source": "easylearn-webback",
+      "class": "",
+      "target": "easylearn-pack endpoint /version PUT"
+    },
+    {
+      "source": "easylearn-webback",
+      "class": "",
+      "target": "easylearn-note endpoint / POST"
+    }
+  ]
+}

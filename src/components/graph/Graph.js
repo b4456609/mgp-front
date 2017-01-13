@@ -3,18 +3,26 @@ import './Graph.css';
 const d3 = window.d3;
 
 function draw(graph){
+  console.log(graph);
   var svg = d3.select("svg");
   var width = document.querySelector('div.col-md-9').offsetWidth;
   var height = window.innerHeight-80;
+  var nodes = d3.range(1000).map(function(i) {
+    return {
+      index: i*-100
+    };
+  });
 
   var color = d3.scaleOrdinal(d3.schemeCategory20);
-  var simulation = d3.forceSimulation()
+  var simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink().id(function(d) {
       return d.id;
-    }).distance(180))
-    .force("charge", d3.forceManyBody().strength(10))
-    .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("collide", d3.forceCollide(55));
+    }).distance(180).strength(0.1))
+    // .force("charge", d3.forceManyBody())
+    // .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("x", d3.forceX())
+    .force("y", d3.forceY())
+    .force("collide", d3.forceCollide(100).iterations(5).strength(0.2));
 
   // build the arrow.
   svg.append('svg:defs').append('svg:marker')
@@ -28,10 +36,13 @@ function draw(graph){
     .attr('d', 'M0,-5L10,0L0,5')
     .attr('fill', '#000');
 
+  svg = svg.append("g")
+  .attr("transform", "translate(" + 500 + "," + 500 + ")");
+
   var link = svg.append("g")
     .attr("class", "links")
     .selectAll("path")
-    .data(graph.serviceCall)
+    .data(graph.providerEndpointWithConsumerPair)
     .enter().append("svg:path")
     .attr("marker-end", "url(#end-arrow)")
     .attr('class', function (d) {
@@ -41,7 +52,7 @@ function draw(graph){
   var servicesDep = svg.append("g")
     .attr("class", "links")
     .selectAll("line")
-    .data(graph.endpoints)
+    .data(graph.serviceWithEndpointPair)
     .enter()
     .append("line")
     .attr('class', function (d) {
@@ -109,8 +120,8 @@ function draw(graph){
     .on("tick", ticked);
 
   simulation.force("link")
-    .links(graph.serviceCall)
-    .links(graph.endpoints);
+    .links(graph.serviceWithEndpointPair)
+    .links(graph.providerEndpointWithConsumerPair);
 
 
     function ticked() {
@@ -177,10 +188,13 @@ class Graph extends Component {
 
   componentDidMount() {
     this.props.getGraphData();
+    if('serviceWithEndpointPair' in this.props.data){
+      draw(this.props.data);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if('serviceCall' in this.props.data){
+    if('serviceWithEndpointPair' in this.props.data){
       draw(this.props.data);
     }
   }
