@@ -1,0 +1,40 @@
+version: '2'
+services:
+  front:
+    build: ./haproxy
+    ports:
+      - "80:80"
+    networks:
+      - inside
+  web:
+    build: .
+    ports:
+      - "9000:9000"
+    networks:
+      - inside
+  api:
+    build: ../mpgback/
+    ports:
+      - "8080:8080"
+    networks:
+      - inside
+    environment:
+      - MONGO_DB=mongo
+      - NEO4J_DB=http://neo:7474
+    depends_on:
+      - mongo
+      - neo
+  mongo:
+    image: mongo
+    ports:
+    - "27017:27017"
+    networks:
+      - inside
+  neo:
+    image: neo4j
+    ports:
+      - "7474:7474"
+    networks:
+      - inside
+networks:
+  inside:
