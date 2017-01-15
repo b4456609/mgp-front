@@ -95,7 +95,8 @@ function draw(graph){
     })
     .attr('class', function (d) {
       return d.className
-    })
+    });
+    circle
     .on('mouseover', onMouseOver)
     .on('mouseout', onMouseOut)
     .call(d3.drag()
