@@ -46,7 +46,7 @@ function draw(graph){
     .enter().append("svg:path")
     .attr("marker-end", "url(#end-arrow)")
     .attr('class', function (d) {
-      return "link " + d.class
+      return "link " + d.className
     });
 
   var servicesDep = svg.append("g")
@@ -56,7 +56,7 @@ function draw(graph){
     .enter()
     .append("line")
     .attr('class', function (d) {
-      return "servicelink " + d.class
+      return "servicelink " + d.className
     });
 
   var group = svg.append("g")
@@ -75,7 +75,7 @@ function draw(graph){
       return color(d.group);
     })
     .attr('class', function (d) {
-      return d.class
+      return d.className
     })
     .on('mouseover', onMouseOver)
     .on('mouseout', onMouseOut)
@@ -85,24 +85,41 @@ function draw(graph){
       .on("end", dragended));
 
   function onMouseOver(obj, index, elementArray){
-    let s = document.getElementsByClassName(obj.class);
-
-    var i;
-    for (i = 0;i < s.length; i++) {
-        s[i].setAttribute('style', "stroke: red; stroke-width: 4px;");
-        if(s[i].className.baseVal.includes("start"))
-          s[i].setAttribute('style', "stroke: green; stroke-width: 4px;");
+    let classStringToken = obj.className.split(' ');
+    for(let item of classStringToken){
+      if(item.includes('start')){
+        let startElement = document.getElementsByClassName(item)[0];
+        startElement.setAttribute('style', "stroke: orange; stroke-width: 4px;");
+        console.log(item);
+        let targetClass = item.substring(0, item.indexOf('-'));
+        console.log(targetClass);
+        let groupElements = document.getElementsByClassName(targetClass);
+        console.log(groupElements);
+        for(let ele of groupElements){
+          console.log(ele);
+          ele.setAttribute('style', "stroke: red; stroke-width: 4px;");
+        }
+      }
     }
   }
 
 
   function onMouseOut(obj, index, elementArray){
-    let s = document.getElementsByClassName(obj.class);
-
-    var i;
-    for (i = 0;i < s.length; i++) {
-        // s[i].setAttribute('fill' ,'#63fff3');
-        s[i].setAttribute('style', "");
+    let classStringToken = obj.className.split(' ');
+    for(let item of classStringToken){
+      if(item.includes('start')){
+        let startElement = document.getElementsByClassName(item)[0];
+        startElement.setAttribute('style', "");
+        console.log(item);
+        let targetClass = item.substring(0, item.indexOf('-'));
+        console.log(targetClass);
+        let groupElements = document.getElementsByClassName(targetClass);
+        console.log(groupElements);
+        for(let ele of groupElements){
+          console.log(ele);
+          ele.setAttribute('style', "");
+        }
+      }
     }
   }
 
