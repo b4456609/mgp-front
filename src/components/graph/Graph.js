@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import './Graph.css';
+import {onNodeClick} from '../../actions';
 const d3 = window.d3;
 
-function draw(graph){
+function draw(graph, dispatch){
   console.log(graph);
   var svg = d3.select("svg");
   var width = document.querySelector('div.col-md-9').offsetWidth;
@@ -103,6 +105,11 @@ function draw(graph){
       .on("start", dragstarted)
       .on("drag", dragged)
       .on("end", dragended));
+
+    circle
+      .on('click', function(i){
+        dispatch(onNodeClick(i.id));
+      })
 
   function onMouseOver(obj, index, elementArray){
     let classStringToken = obj.className.split(' ');
@@ -218,13 +225,13 @@ class Graph extends Component {
   componentDidMount() {
     this.props.getGraphData();
     if('serviceWithEndpointPair' in this.props.data){
-      draw(this.props.data);
+      draw(this.props.data, this.props.dispatch);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if('serviceWithEndpointPair' in this.props.data){
-      draw(this.props.data);
+      draw(this.props.data, this.props.dispatch);
     }
   }
 
@@ -233,4 +240,4 @@ class Graph extends Component {
   }
 }
 
-export default Graph;
+export default connect()(Graph);
