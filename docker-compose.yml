@@ -4,6 +4,9 @@ services:
     build: ./haproxy
     ports:
       - "80:80"
+    links:
+      - api
+      - web
     networks:
       - inside
   web:
@@ -13,7 +16,7 @@ services:
     networks:
       - inside
   api:
-    build: ../mpgback/
+    build: ../mgpback/
     ports:
       - "8080:8080"
     networks:
@@ -27,13 +30,13 @@ services:
   mongo:
     image: mongo
     ports:
-    - "27017:27017"
+    - "6666:27017"
     networks:
       - inside
   neo:
     image: neo4j
     ports:
-      - "7474:7474"
+      - "7878:7474"
     networks:
       - inside
 networks:
