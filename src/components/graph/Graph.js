@@ -39,9 +39,9 @@ function draw(graph){
           if('id' in i[0] && i[0].id.indexOf(' ')===-1){
             return 100;
           }
-          return -500;
+          return -200;
         })
-        .distanceMax(100))
+        .distanceMin(200))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collide", d3.forceCollide(60));
 
@@ -109,13 +109,9 @@ function draw(graph){
       if(item.includes('start')){
         let startElement = document.getElementsByClassName(item)[0];
         startElement.setAttribute('style', "stroke: orange; stroke-width: 4px;");
-        console.log(item);
         let targetClass = item.substring(0, item.indexOf('-'));
-        console.log(targetClass);
         let groupElements = document.getElementsByClassName(targetClass);
-        console.log(groupElements);
         for(let ele of groupElements){
-          console.log(ele);
           ele.setAttribute('style', "stroke: red; stroke-width: 4px;");
         }
       }
@@ -129,13 +125,9 @@ function draw(graph){
       if(item.includes('start')){
         let startElement = document.getElementsByClassName(item)[0];
         startElement.setAttribute('style', "");
-        console.log(item);
         let targetClass = item.substring(0, item.indexOf('-'));
-        console.log(targetClass);
         let groupElements = document.getElementsByClassName(targetClass);
-        console.log(groupElements);
         for(let ele of groupElements){
-          console.log(ele);
           ele.setAttribute('style', "");
         }
       }
