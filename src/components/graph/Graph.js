@@ -17,12 +17,33 @@ function draw(graph){
   var simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink().id(function(d) {
       return d.id;
-    }).distance(180).strength(0.1))
-    // .force("charge", d3.forceManyBody())
-    // .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("x", d3.forceX())
-    .force("y", d3.forceY())
-    .force("collide", d3.forceCollide(100).iterations(5).strength(0.2));
+    }).distance(function(...i){
+      // console.log(i);
+      //relationship of node and endpoint
+      if(i[0].target.id.indexOf(i[0].source.id) !== -1){
+        return 130;
+      }
+      return 200;
+    }).strength(function (...i) {
+      // console.log(i);
+      //relationship of node and endpoint
+      if(i[0].target.id.indexOf(i[0].source.id) !== -1){
+        return 1;
+      }
+      return 0.3;
+
+    }))
+    .force("charge", d3.forceManyBody()
+        .strength(function(...i){
+          //relationship of node and endpoint
+          if('id' in i[0] && i[0].id.indexOf(' ')===-1){
+            return 100;
+          }
+          return -500;
+        })
+        .distanceMax(100))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collide", d3.forceCollide(60));
 
   // build the arrow.
   svg.append('svg:defs').append('svg:marker')
@@ -36,8 +57,6 @@ function draw(graph){
     .attr('d', 'M0,-5L10,0L0,5')
     .attr('fill', '#000');
 
-  svg = svg.append("g")
-  .attr("transform", "translate(" + 500 + "," + 500 + ")");
 
   var link = svg.append("g")
     .attr("class", "links")
@@ -135,10 +154,10 @@ function draw(graph){
   simulation
     .nodes(graph.nodes)
     .on("tick", ticked);
-
+  let gr = [];
+  gr = gr.concat(graph.providerEndpointWithConsumerPair).concat(graph.serviceWithEndpointPair);
   simulation.force("link")
-    .links(graph.serviceWithEndpointPair)
-    .links(graph.providerEndpointWithConsumerPair);
+    .links(gr)
 
 
     function ticked() {

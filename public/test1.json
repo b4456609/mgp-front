@@ -1,1 +1,154 @@
-{"serviceWithEndpointPair":[{"source":"easylearn-note","className":"group0 ","target":"easylearn-note endpoint / POST"},{"source":"easylearn-pack","className":"","target":"easylearn-pack endpoint / POST"},{"source":"easylearn-pack","className":"group1 ","target":"easylearn-pack endpoint / GET"},{"source":"easylearn-pack","className":"","target":"easylearn-pack endpoint /{packId}/version POST"},{"source":"easylearn-pack","className":"group0 ","target":"easylearn-pack endpoint /version PUT"},{"source":"easylearn-user","className":"group1 ","target":"easylearn-user endpoint /pack GET"},{"source":"easylearn-user","className":"","target":"easylearn-user endpoint /folder/{id} DELETE"},{"source":"easylearn-user","className":"","target":"easylearn-user endpoint /folder POST"},{"source":"easylearn-user","className":"","target":"easylearn-user endpoint /folder PUT"},{"source":"easylearn-user","className":"","target":"easylearn-user endpoint /folder GET"},{"source":"easylearn-user","className":"","target":"easylearn-user endpoint /login POST"},{"source":"easylearn-user","className":"","target":"easylearn-user endpoint /folder/pack/{id} DELETE"},{"source":"easylearn-webback","className":"group0 ","target":"easylearn-webback endpoint /note POST"}],"nodes":[{"id":"easylearn-note endpoint / POST","label":"/ POST","className":"group0 ","group":1},{"id":"easylearn-webback endpoint /note POST","label":"/note POST","className":"group0-start ","group":1},{"id":"easylearn-pack endpoint / GET","label":"/ GET","className":"group1-start ","group":1},{"id":"easylearn-user endpoint /pack GET","label":"/pack GET","className":"group1 ","group":1},{"id":"easylearn-pack endpoint / POST","label":"/ POST","className":"","group":1},{"id":"easylearn-pack endpoint /{packId}/version POST","label":"/{packId}/version POST","className":"","group":1},{"id":"easylearn-pack endpoint /version PUT","label":"/version PUT","className":"group0 ","group":1},{"id":"easylearn-user endpoint /folder PUT","label":"/folder PUT","className":"","group":1},{"id":"easylearn-user endpoint /folder/pack/{id} DELETE","label":"/folder/pack/{id} DELETE","className":"","group":1},{"id":"easylearn-user endpoint /folder/{id} DELETE","label":"/folder/{id} DELETE","className":"","group":1},{"id":"easylearn-user endpoint /folder POST","label":"/folder POST","className":"","group":1},{"id":"easylearn-user endpoint /folder GET","label":"/folder GET","className":"","group":1},{"id":"easylearn-user endpoint /login POST","label":"/login POST","className":"","group":1},{"id":"easylearn-note","label":"easylearn-note","className":"group0 ","group":2},{"id":"easylearn-pack","label":"easylearn-pack","className":"group0 group1 ","group":2},{"id":"easylearn-user","label":"easylearn-user","className":"group1 ","group":2},{"id":"easylearn-webback","label":"easylearn-webback","className":"group0 ","group":2}],"providerEndpointWithConsumerPair":[{"source":"easylearn-pack","className":"group1 ","target":"easylearn-user endpoint /pack GET"},{"source":"easylearn-webback","className":"group0 ","target":"easylearn-note endpoint / POST"},{"source":"easylearn-webback","className":"group0 ","target":"easylearn-pack endpoint /version PUT"}]}
+{
+  "serviceWithEndpointPair": [{
+    "source": "easylearn-note",
+    "className": "group0 ",
+    "target": "easylearn-note endpoint / POST"
+  }, {
+    "source": "easylearn-pack",
+    "className": "",
+    "target": "easylearn-pack endpoint / POST"
+  }, {
+    "source": "easylearn-pack",
+    "className": "group1 ",
+    "target": "easylearn-pack endpoint / GET"
+  }, {
+    "source": "easylearn-pack",
+    "className": "",
+    "target": "easylearn-pack endpoint /{packId}/version POST"
+  }, {
+    "source": "easylearn-pack",
+    "className": "group0 ",
+    "target": "easylearn-pack endpoint /version PUT"
+  }, {
+    "source": "easylearn-user",
+    "className": "group1 ",
+    "target": "easylearn-user endpoint /pack GET"
+  }, {
+    "source": "easylearn-user",
+    "className": "",
+    "target": "easylearn-user endpoint /folder/{id} DELETE"
+  }, {
+    "source": "easylearn-user",
+    "className": "",
+    "target": "easylearn-user endpoint /folder POST"
+  }, {
+    "source": "easylearn-user",
+    "className": "",
+    "target": "easylearn-user endpoint /folder PUT"
+  }, {
+    "source": "easylearn-user",
+    "className": "",
+    "target": "easylearn-user endpoint /folder GET"
+  }, {
+    "source": "easylearn-user",
+    "className": "",
+    "target": "easylearn-user endpoint /login POST"
+  }, {
+    "source": "easylearn-user",
+    "className": "",
+    "target": "easylearn-user endpoint /folder/pack/{id} DELETE"
+  }, {
+    "source": "easylearn-webback",
+    "className": "group0 ",
+    "target": "easylearn-webback endpoint /note POST"
+  }],
+  "nodes": [{
+    "id": "easylearn-note endpoint / POST",
+    "label": "/ POST",
+    "className": "group0 ",
+    "group": 1
+  }, {
+    "id": "easylearn-webback endpoint /note POST",
+    "label": "/note POST",
+    "className": "group0-start ",
+    "group": 1
+  }, {
+    "id": "easylearn-pack endpoint / GET",
+    "label": "/ GET",
+    "className": "group1-start ",
+    "group": 1
+  }, {
+    "id": "easylearn-user endpoint /pack GET",
+    "label": "/pack GET",
+    "className": "group1 ",
+    "group": 1
+  }, {
+    "id": "easylearn-pack endpoint / POST",
+    "label": "/ POST",
+    "className": "",
+    "group": 1
+  }, {
+    "id": "easylearn-pack endpoint /{packId}/version POST",
+    "label": "/{packId}/version POST",
+    "className": "",
+    "group": 1
+  }, {
+    "id": "easylearn-pack endpoint /version PUT",
+    "label": "/version PUT",
+    "className": "group0 ",
+    "group": 1
+  }, {
+    "id": "easylearn-user endpoint /folder PUT",
+    "label": "/folder PUT",
+    "className": "",
+    "group": 1
+  }, {
+    "id": "easylearn-user endpoint /folder/pack/{id} DELETE",
+    "label": "/folder/pack/{id} DELETE",
+    "className": "",
+    "group": 1
+  }, {
+    "id": "easylearn-user endpoint /folder/{id} DELETE",
+    "label": "/folder/{id} DELETE",
+    "className": "",
+    "group": 1
+  }, {
+    "id": "easylearn-user endpoint /folder POST",
+    "label": "/folder POST",
+    "className": "",
+    "group": 1
+  }, {
+    "id": "easylearn-user endpoint /folder GET",
+    "label": "/folder GET",
+    "className": "",
+    "group": 1
+  }, {
+    "id": "easylearn-user endpoint /login POST",
+    "label": "/login POST",
+    "className": "",
+    "group": 1
+  }, {
+    "id": "easylearn-note",
+    "label": "easylearn-note",
+    "className": "group0 ",
+    "group": 2
+  }, {
+    "id": "easylearn-pack",
+    "label": "easylearn-pack",
+    "className": "group0 group1 ",
+    "group": 2
+  }, {
+    "id": "easylearn-user",
+    "label": "easylearn-user",
+    "className": "group1 ",
+    "group": 2
+  }, {
+    "id": "easylearn-webback",
+    "label": "easylearn-webback",
+    "className": "group0 ",
+    "group": 2
+  }],
+  "providerEndpointWithConsumerPair": [{
+    "source": "easylearn-pack",
+    "className": "group1 ",
+    "target": "easylearn-user endpoint /pack GET"
+  }, {
+    "source": "easylearn-webback",
+    "className": "group0 ",
+    "target": "easylearn-note endpoint / POST"
+  }, {
+    "source": "easylearn-webback",
+    "className": "group0 ",
+    "target": "easylearn-pack endpoint /version PUT"
+  }]
+}
