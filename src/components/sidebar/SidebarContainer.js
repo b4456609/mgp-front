@@ -5,8 +5,15 @@ import ServiceInfo from './ServiceInfo.js';
 import ServiceCallInfo from './ServiceCallInfo.js';
 
 class SidebarContainer extends Component {
+  getEndpointInfo(){
+    let {showEndpoint, endpointData} = this.props;
+    if(showEndpoint){
+      return (<ServiceEndpointInfo data={endpointData}/>)
+    }
+    return null;
+  }
   getServiceInfo(){
-    let {showService, serviceData,} = this.props;
+    let {showService, serviceData} = this.props;
     let result = null;
     if (showService) {
       result = (<ServiceInfo data={serviceData}/>);
@@ -16,7 +23,7 @@ class SidebarContainer extends Component {
   render() {
     return (
       <div>
-        <ServiceEndpointInfo/>
+        {this.getEndpointInfo()}
         {this.getServiceInfo()}
         <ServiceCallInfo/>
       </div>
@@ -25,12 +32,21 @@ class SidebarContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  let result = {};
-  result.showService = state.app.sidebar.showService;
-  if (state.app.sidebar.showService) {
-    console.log(state.service);
-    let service = state.service.find((i) => i.id === state.app.sidebar.serviceId);
+  const {showService, showServiceCall, showEndpoint} = state.app.sidebar;
+  let result = {
+    showService, showServiceCall, showEndpoint
+  };
+  if (showService) {
+    const service = state.service.find((i) => i.id === state.app.sidebar.serviceId);
     result.serviceData = service;
+  }
+  if(showEndpoint){
+    const endpoint = state.endpoint.find((i) => i.id === state.app.sidebar.endpointId);
+    console.log(state.endpoint);
+    result.endpointData = endpoint;
+
+  }
+  if(showServiceCall){
   }
   return result;
 }

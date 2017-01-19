@@ -1,9 +1,10 @@
 const init = {
   sidebar: {
     showEndpoint: false,
-    showServiceCall: false,
+    showServiceCall: true,
     showService: false,
     serviceId: 'easylearn-user',
+    endpointId: 'easylearn-note endpoint / POST',
   }
 }
 const app = (state = init, action) => {
