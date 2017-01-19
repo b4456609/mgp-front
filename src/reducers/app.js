@@ -5,6 +5,7 @@ const init = {
     showService: false,
     serviceId: 'easylearn-user',
     endpointId: 'easylearn-note endpoint / POST',
+    serviceCallId: 'easylearn-pack easylearn-user /pack GET',
   }
 }
 const app = (state = init, action) => {

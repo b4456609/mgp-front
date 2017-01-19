@@ -20,12 +20,16 @@ class SidebarContainer extends Component {
     }
     return result;
   }
+  getServiceCallInfo(){
+    let {showServiceCall, serviceCallData} = this.props;
+    return (<ServiceCallInfo data={serviceCallData}/>)
+  }
   render() {
     return (
       <div>
         {this.getEndpointInfo()}
         {this.getServiceInfo()}
-        <ServiceCallInfo/>
+        {this.getServiceCallInfo()}
       </div>
     );
   }
@@ -47,6 +51,8 @@ function mapStateToProps(state) {
 
   }
   if(showServiceCall){
+    const serviceCallData = state.serviceCall.find((i)=> i.id ===  state.app.sidebar.serviceCallId)
+    result.serviceCallData = serviceCallData;
   }
   return result;
 }

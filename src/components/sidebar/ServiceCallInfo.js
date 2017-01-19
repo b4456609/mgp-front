@@ -1,24 +1,28 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   Panel,
+  Table
 } from 'react-bootstrap';
 import Highlight from 'react-highlight';
-import {js_beautify} from 'js-beautify';
-import PactFakeFile from './PactFakeFile.js';
 
-class ServiceCallInfo extends Component {
-  getCode(code) {
-    return js_beautify(JSON.stringify(code), { indent_size: 2 });
-  }
-  render() {
-    return (
+const ServiceCallInfo = ({data}) => (
     <Panel collapsible defaultExpanded header="Service Call Information">
+      <Table striped bordered condensed hover responsive>
+        <tbody>
+          <tr>
+            <td>From</td>
+            <td>{data.from}</td>
+          </tr>
+          <tr>
+            <td>To</td>
+            <td>{data.to}</td>
+          </tr>
+        </tbody>
+      </Table>
       <Highlight className='json'>
-        {this.getCode(PactFakeFile)}
+        {data.pact}
       </Highlight>
     </Panel>
     );
-  }
-}
 
 export default ServiceCallInfo;
