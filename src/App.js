@@ -9,9 +9,7 @@ import {
 } from 'react-bootstrap';
 import './App.css';
 import GraphContainer from './components/graph/GraphContainer.js';
-import ServiceEndpointInfo from './components/sidebar/ServiceEndpointInfo.js';
-import ServiceInfo from './components/sidebar/ServiceInfo.js';
-import ServiceCallInfo from './components/sidebar/ServiceCallInfo.js';
+import SidebarContainer from './components/sidebar/SidebarContainer.js';
 import {getGraphData} from './actions';
 
 class App extends Component {
@@ -41,9 +39,7 @@ class App extends Component {
               <GraphContainer />
             </Col>
             <Col md={3}>
-              <ServiceEndpointInfo />
-              <ServiceInfo />
-              <ServiceCallInfo />
+              <SidebarContainer />
             </Col>
           </Row>
         </Grid>
