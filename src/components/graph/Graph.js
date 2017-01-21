@@ -7,7 +7,7 @@ const d3 = window.d3;
 function draw(graph, dispatch){
   console.log(graph);
   var svg = d3.select("svg");
-  var width = document.querySelector('div.col-md-9').offsetWidth;
+  var width = document.querySelector('div.col-lg-9').offsetWidth;
   var height = window.innerHeight-80;
   var nodes = d3.range(1000).map(function(i) {
     return {

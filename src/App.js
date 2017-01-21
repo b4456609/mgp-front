@@ -35,10 +35,10 @@ class App extends Component {
         </Navbar>
         <Grid fluid>
           <Row>
-            <Col md={9}>
+            <Col md={7} lg={9}>
               <GraphContainer />
             </Col>
-            <Col md={3}>
+            <Col md={5} lg={3}>
               <SidebarContainer />
             </Col>
           </Row>
