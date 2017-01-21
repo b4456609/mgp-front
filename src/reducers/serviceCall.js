@@ -1,6 +1,6 @@
 const init = [
   {
-    id: 'easylearn-pack easylearn-user /pack GET',
+    id: 'easylearn-pack easylearn-user endpoint /pack GET',
     from: 'easylearn-pack',
     to: 'easylearn-user /pack GET',
     pact: `{

@@ -20,3 +20,11 @@ export function onNodeClick(id) {
     id
   }
 }
+
+export const ON_SERVICE_CALL_CLICK = 'ON_SERVICE_CALL_CLICK';
+export function onServiceCallClick(id){
+  return {
+    type: ON_SERVICE_CALL_CLICK,
+    id
+  }
+}

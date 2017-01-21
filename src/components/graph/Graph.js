@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import './Graph.css';
-import {onNodeClick} from '../../actions';
+import {onNodeClick, onServiceCallClick} from '../../actions';
 const d3 = window.d3;
 
 function draw(graph, dispatch){
@@ -106,9 +106,14 @@ function draw(graph, dispatch){
       .on("drag", dragged)
       .on("end", dragended));
 
+    //click on endpoint, service and service call
     circle
       .on('click', function(i){
         dispatch(onNodeClick(i.id));
+      });
+    link
+      .on('click', function(i){
+        dispatch(onServiceCallClick(i.source.id + ' ' + i.target.id));
       })
 
   function onMouseOver(obj, index, elementArray){

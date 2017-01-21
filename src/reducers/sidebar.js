@@ -1,4 +1,4 @@
-import {ON_NODE_CLICK} from '../actions';
+import {ON_NODE_CLICK, ON_SERVICE_CALL_CLICK} from '../actions';
 const init = {
   showEndpoint: false,
   showServiceCall: false,
@@ -18,9 +18,8 @@ const sidebar = (state = init, action) => {
           showService: true,
           serviceId: action.id
         });
-      }
-      //endpoint node
-      else {
+      } else {
+        //endpoint node
         return Object.assign({}, state, {
           showServiceCall: false,
           showEndpoint: true,
@@ -28,6 +27,13 @@ const sidebar = (state = init, action) => {
           endpointId: action.id
         });
       }
+    case ON_SERVICE_CALL_CLICK:
+      return Object.assign({}, state, {
+        showServiceCall: true,
+        showEndpoint: false,
+        showService: false,
+        serviceCallId: action.id,
+      })
     default:
       return state;
   }
