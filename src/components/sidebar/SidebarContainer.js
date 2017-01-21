@@ -51,7 +51,6 @@ function mapStateToProps(state) {
   }
   if (showEndpoint) {
     const endpoint = state.endpoint.find((i) => i.id === state.sidebar.endpointId);
-    console.log(state.endpoint);
     result.endpointData = endpoint;
 
   }

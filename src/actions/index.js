@@ -13,7 +13,6 @@ export function getGraphData() {
   };
 }
 
-
 export const ON_NODE_CLICK = 'ON_NODE_CLICK';
 export function onNodeClick(id) {
   return {
