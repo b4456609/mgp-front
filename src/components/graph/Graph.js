@@ -217,11 +217,6 @@ function draw(graph, dispatch){
 
 
 class Graph extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getGraphData();
     if('serviceWithEndpointPair' in this.props.data){
