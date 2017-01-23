@@ -10,7 +10,7 @@ import Highlight from 'react-highlight';
 const uploadCode =
 `curl -i -X POST \\
   -H "Content-Type: multipart/form-data" \\
-  -F "data=@./mpd.json" http://localhost/api/mpd`;
+  -F "file=@./mpd.json" http://localhost/api/mpd`;
 
 const HowPage = () => (
   <Grid>
