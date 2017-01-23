@@ -4,12 +4,14 @@ import App from './App';
 import './index.css';
 
 import reducer from './reducers';
-import { applyMiddleware, createStore } from 'redux';
-import { Provider } from 'react-redux';
+import {applyMiddleware, createStore,} from 'redux';
+import {Provider} from 'react-redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import { Router, Route, browserHistory } from 'react-router';
+import {Router, Route, browserHistory, IndexRoute,} from 'react-router';
+
+import GraphPage from './GraphPage.js';
 
 const logger = createLogger();
 
@@ -24,10 +26,9 @@ const store = createStore(reducer, ...debugMidware);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App} >
-      </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('root')
-);
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={GraphPage}/>
+    </Route>
+  </Router>
+</Provider>, document.getElementById('root'));
