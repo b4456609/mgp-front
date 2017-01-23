@@ -6,6 +6,15 @@ import {
 } from 'react-bootstrap';
 import './App.css';
 import {getGraphData} from './actions';
+import { browserHistory } from 'react-router'
+
+function handleSelect(...i){
+  console.log(i);
+}
+
+function onClick(...i) {
+  console.log(i);
+}
 
 class App extends Component {
   componentDidMount() {
@@ -14,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar collapseOnSelect fluid>
+        <Navbar collapseOnSelect fluid onSelect={handleSelect}>
           <Navbar.Header>
             <Navbar.Brand>
               <a href="#">Microservices Graph Platform</a>
@@ -23,10 +32,10 @@ class App extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <NavItem eventKey={1} href="#">Graph</NavItem>
-              <NavItem eventKey={2} href="#">Setting</NavItem>
-              <NavItem eventKey={3} href="#">Document</NavItem>
-              <NavItem eventKey={4} href="#">How</NavItem>
+              <NavItem eventKey={1} onClick={()=>{browserHistory.push('/');}} >Graph</NavItem>
+              <NavItem eventKey={2} onClick={()=>{browserHistory.push('/setting');}} >Setting</NavItem>
+              <NavItem eventKey={3} onClick={()=>{browserHistory.push('/document');}} >Document</NavItem>
+              <NavItem eventKey={4} onClick={()=>{browserHistory.push('/how');}} >How</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 import {Router, Route, browserHistory, IndexRoute,} from 'react-router';
 
 import GraphPage from './GraphPage.js';
+import HowPage from './HowPage.js';
 
 const logger = createLogger();
 
@@ -26,9 +27,10 @@ const store = createStore(reducer, ...debugMidware);
 
 ReactDOM.render(
   <Provider store={store}>
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={GraphPage}/>
-    </Route>
-  </Router>
-</Provider>, document.getElementById('root'));
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={GraphPage}/>
+        <Route path="how" component={HowPage} />
+      </Route>
+    </Router>
+  </Provider>, document.getElementById('root'));
