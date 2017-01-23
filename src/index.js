@@ -13,6 +13,9 @@ import {Router, Route, browserHistory, IndexRoute,} from 'react-router';
 
 import GraphPage from './GraphPage.js';
 import HowPage from './HowPage.js';
+import SettingPage from './SettingPage.js';
+
+import {getGraphData, getSettingData} from './actions';
 
 const logger = createLogger();
 
@@ -25,12 +28,16 @@ debugMidware.push(applyMiddleware(thunk, logger));
 
 const store = createStore(reducer, ...debugMidware);
 
+store.dispatch(getGraphData());
+store.dispatch(getSettingData());
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={GraphPage}/>
         <Route path="how" component={HowPage} />
+        <Route path="setting" component={SettingPage} />
       </Route>
     </Router>
   </Provider>, document.getElementById('root'));

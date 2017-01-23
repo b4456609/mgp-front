@@ -5,25 +5,15 @@ import {
   NavItem,
 } from 'react-bootstrap';
 import './App.css';
-import {getGraphData} from './actions';
 import { browserHistory } from 'react-router'
-
-function handleSelect(...i){
-  console.log(i);
-}
-
-function onClick(...i) {
-  console.log(i);
-}
 
 class App extends Component {
   componentDidMount() {
-    getGraphData();
   }
   render() {
     return (
       <div>
-        <Navbar collapseOnSelect fluid onSelect={handleSelect}>
+        <Navbar collapseOnSelect fluid>
           <Navbar.Header>
             <Navbar.Brand>
               <a href="#">Microservices Graph Platform</a>

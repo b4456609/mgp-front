@@ -1,4 +1,4 @@
-import {getGraph} from '../api/mgp.js';
+import {getGraph, getSetting} from '../api/mgp.js';
 
 export const GRAPH_LOADED = 'GRAPH_LOADED';
 export function getGraphData() {
@@ -8,6 +8,25 @@ export function getGraphData() {
         dispatch({
           type: GRAPH_LOADED,
           data
+        });
+      })
+  };
+}
+
+export const SETTING_LOADED = 'SETTING_LOADED';
+export const SETTING_LOAD_ERROR = 'SETTING_LOAD_ERROR';
+export function getSettingData() {
+  return (dispatch) => {
+    getSetting()
+      .then((data) => {
+        dispatch({
+          type: SETTING_LOADED,
+          data
+        });
+      }).catch(function(ex) {
+        console.log('parsing failed', ex)
+        dispatch({
+          type: SETTING_LOAD_ERROR,
         });
       })
   };
@@ -26,5 +45,12 @@ export function onServiceCallClick(id){
   return {
     type: ON_SERVICE_CALL_CLICK,
     id
+  }
+}
+export const ON_SAVE_SETTING = 'ON_SAVE_SETTING';
+export function onSaveSetting(url) {
+  return {
+    type: ON_SAVE_SETTING,
+    url
   }
 }
