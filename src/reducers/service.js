@@ -1,3 +1,4 @@
+import {SERVICE_INFO_LOADED} from '../actions';
 
 const service = (state = [{
   "id": "easylearn-user",
@@ -6,6 +7,8 @@ const service = (state = [{
   "swagger": 'http://140/123'
 }], action) => {
   switch (action.type) {
+    case SERVICE_INFO_LOADED:
+      return action.data;
     default:
       return state;
   }

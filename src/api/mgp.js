@@ -21,8 +21,27 @@ export function updateSetting(url) {
 }
 
 export function getSetting() {
-  console.log('getsetting');
   return fetch(base + '/api/pact/config').then(function(response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+  }).then(function(response) {
+    return response.json();
+  });
+}
+
+export function getServiceInfo() {
+  return fetch(base + '/api/serviceInfo').then(function(response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+  }).then(function(response) {
+    return response.json();
+  });
+}
+
+export function getServiceCallInfo() {
+  return fetch(base + '/api/serviceCallInfo').then(function(response) {
     if (!response.ok) {
       throw Error(response.statusText);
     }

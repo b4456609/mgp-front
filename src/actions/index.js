@@ -1,4 +1,4 @@
-import {getGraph, getSetting} from '../api/mgp.js';
+import {getGraph, getSetting, getServiceInfo, getServiceCallInfo,} from '../api/mgp.js';
 
 export const GRAPH_LOADED = 'GRAPH_LOADED';
 export function getGraphData() {
@@ -7,6 +7,32 @@ export function getGraphData() {
       .then((data) => {
         dispatch({
           type: GRAPH_LOADED,
+          data
+        });
+      })
+  };
+}
+
+export const SERVICECALL_INFO_LOADED = 'SERVICECALL_INFO_LOADED';
+export function getServiceCallInfoData() {
+  return (dispatch) => {
+    getServiceCallInfo()
+      .then((data) => {
+        dispatch({
+          type: SERVICECALL_INFO_LOADED,
+          data
+        });
+      })
+  };
+}
+
+export const SERVICE_INFO_LOADED = 'SERVICE_INFO_LOADED';
+export function getServiceInfoData() {
+  return (dispatch) => {
+    getServiceInfo()
+      .then((data) => {
+        dispatch({
+          type: SERVICE_INFO_LOADED,
           data
         });
       })

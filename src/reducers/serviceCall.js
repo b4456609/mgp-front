@@ -1,8 +1,9 @@
+import {SERVICECALL_INFO_LOADED} from '../actions';
 const init = [
   {
     id: 'easylearn-pack easylearn-user endpoint /pack GET',
-    from: 'easylearn-pack',
-    to: 'easylearn-user /pack GET',
+    consumer: 'easylearn-pack',
+    provider: 'easylearn-user /pack GET',
     pact: `{
   "provider": {
     "name": "easylearn-user"
@@ -40,6 +41,8 @@ const init = [
 ]
 const serviceCall = (state = init, action) => {
   switch (action.type) {
+    case SERVICECALL_INFO_LOADED:
+      return action.data;
     default:
       return state;
   }

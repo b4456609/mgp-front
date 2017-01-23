@@ -10,12 +10,12 @@ const ServiceCallInfo = ({data}) => (
       <Table striped bordered condensed hover responsive>
         <tbody>
           <tr>
-            <td>From</td>
-            <td>{data.from}</td>
+            <td>Consumer</td>
+            <td>{data.consumer}</td>
           </tr>
           <tr>
-            <td>To</td>
-            <td>{data.to}</td>
+            <td>Provider</td>
+            <td>{data.provider}</td>
           </tr>
         </tbody>
       </Table>
