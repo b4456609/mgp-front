@@ -60,8 +60,7 @@ function draw(graph, dispatch){
     .attr('fill', '#000');
 
 
-  var link = svg.append("g")
-    .attr("class", "links")
+  var link = svg
     .selectAll("path")
     .data(graph.providerEndpointWithConsumerPair)
     .enter().append("svg:path")
@@ -70,8 +69,7 @@ function draw(graph, dispatch){
       return "link " + d.className
     });
 
-  var servicesDep = svg.append("g")
-    .attr("class", "links")
+  var servicesDep = svg
     .selectAll("line")
     .data(graph.serviceWithEndpointPair)
     .enter()
@@ -80,8 +78,7 @@ function draw(graph, dispatch){
       return "servicelink " + d.className
     });
 
-  var group = svg.append("g")
-    .attr("class", "nodes")
+  var group = svg
     .selectAll("g")
     .data(graph.nodes)
     .enter()
