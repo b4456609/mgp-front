@@ -17,26 +17,26 @@
       cursor: crosshair;
     }
 
-    path.link {
+    path.call-link {
       fill: none;
       stroke: #666;
       stroke-width: 2.5px;
       cursor: default;
     }
 
-    svg:not(.active):not(.ctrl) path.link {
+    svg:not(.active):not(.ctrl) path.call-link {
       cursor: pointer;
     }
 
-    path.link.selected {
+    path.call-link.selected {
       stroke-dasharray: 10, 2;
     }
 
-    path.link.dragline {
+    path.call-link.dragline {
       pointer-events: none;
     }
 
-    path.link.hidden {
+    path.call-link.hidden {
       stroke-width: 0;
     }
 

@@ -61,12 +61,12 @@ function draw(graph, dispatch){
 
 
   var link = svg
-    .selectAll("path")
+    .selectAll(".call-link")
     .data(graph.providerEndpointWithConsumerPair)
     .enter().append("svg:path")
     .attr("marker-end", "url(#end-arrow)")
     .attr('class', function (d) {
-      return "link " + d.className
+      return "call-link " + d.className
     });
 
   var servicesDep = svg
