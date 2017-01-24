@@ -1,7 +1,10 @@
-const base = 'http://localhost:8080';
+let base = '';
+if(process.env.NODE_ENV !== 'production'){
+  base = 'http://localhost:8080'
+}
 
 export function getGraph() {
-  return fetch('test1.json').then(function(response) {
+  return fetch(base + '/api/graph').then(function(response) {
     return response.json();
   }).catch(function(ex) {
     console.log('parsing failed', ex)

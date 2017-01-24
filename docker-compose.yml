@@ -15,15 +15,25 @@ services:
       - "9000:9000"
     networks:
       - inside
+  codegen:
+    build: ../mgp-codegen
+    ports:
+      - "3001:3001"
+    networks:
+      - inside
   api:
-    build: ../mgpback/
+    build: ../mgpback
     ports:
       - "8080:8080"
     networks:
       - inside
+    links:
+      - mongo
+      - neo
     environment:
       - MONGO_DB=mongo
       - NEO4J_DB=http://neo:7474
+      - CODEGEN_HOST=http://codegen:3001/
     depends_on:
       - mongo
       - neo
@@ -37,6 +47,9 @@ services:
     image: neo4j
     ports:
       - "7878:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=none
     networks:
       - inside
 networks:
