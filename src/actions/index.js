@@ -1,4 +1,11 @@
-import {getGraph, getSetting, getServiceInfo, getServiceCallInfo,} from '../api/mgp.js';
+import {
+  getGraph,
+  getSetting,
+  getServiceInfo,
+  getServiceCallInfo,
+  getEndpointInfo,
+  buildSwaggerURL,
+} from '../api/mgp.js';
 
 export const GRAPH_LOADED = 'GRAPH_LOADED';
 export function getGraphData() {
@@ -31,8 +38,24 @@ export function getServiceInfoData() {
   return (dispatch) => {
     getServiceInfo()
       .then((data) => {
+        data.forEach((service) => {
+          service.swagger = buildSwaggerURL(service.id)
+        });
         dispatch({
           type: SERVICE_INFO_LOADED,
+          data
+        });
+      })
+  };
+}
+
+export const ENDPOINT_INFO_LOADED = 'ENDPOINT_INFO_LOADED';
+export function getEndpointInfoData() {
+  return (dispatch) => {
+    getEndpointInfo()
+      .then((data) => {
+        dispatch({
+          type: ENDPOINT_INFO_LOADED,
           data
         });
       })

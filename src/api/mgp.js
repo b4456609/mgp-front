@@ -4,7 +4,7 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 export function getGraph() {
-  return fetch(base + '/api/graph').then(function(response) {
+  return fetch(base + '/api/graph/visual').then(function(response) {
     return response.json();
   }).catch(function(ex) {
     console.log('parsing failed', ex)
@@ -28,27 +28,48 @@ export function getSetting() {
     if (!response.ok) {
       throw Error(response.statusText);
     }
+    return response;
   }).then(function(response) {
     return response.json();
   });
 }
 
 export function getServiceInfo() {
-  return fetch(base + '/api/serviceInfo').then(function(response) {
+  return fetch(base + '/api/graph/service').then(function(response) {
+    console.log(response);
     if (!response.ok) {
       throw Error(response.statusText);
     }
+    return response;
   }).then(function(response) {
     return response.json();
   });
 }
 
 export function getServiceCallInfo() {
-  return fetch(base + '/api/serviceCallInfo').then(function(response) {
+  return fetch(base + '/api/graph/serviceCall').then(function(response) {
+    console.log(response);
     if (!response.ok) {
       throw Error(response.statusText);
     }
+    return response;
   }).then(function(response) {
     return response.json();
   });
+}
+
+export function getEndpointInfo() {
+  return fetch(base + '/api/graph/endpoint').then(function(response) {
+    console.log(response);
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
+  }).then(function(response) {
+    return response.json();
+  });
+}
+
+export function buildSwaggerURL(serviceName){
+  return `/swagger/index.html?url=${window.location.origin}/api/swagger/${serviceName}`;
 }

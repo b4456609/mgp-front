@@ -52,10 +52,13 @@ function mapStateToProps(state) {
   if (showEndpoint) {
     const endpoint = state.endpoint.find((i) => i.id === state.sidebar.endpointId);
     result.endpointData = endpoint;
-
   }
   if (showServiceCall) {
-    const serviceCallData = state.serviceCall.find((i) => i.id === state.sidebar.serviceCallId)
+    const split = state.sidebar.serviceCallId.split(' ');
+    const consumer = split[0];
+    const provider = split[1];
+    const serviceCallData = state.serviceCall.find((i) => i.consumer === consumer && i.provider===provider);
+
     result.serviceCallData = serviceCallData;
   }
   return result;

@@ -23,7 +23,7 @@ const ServiceInfo = ({data}) => (
         </tr>
       </tbody>
     </Table>
-    <Button href={`\\api\\swagger-ui\\${data.swagger}`} bsStyle="primary" bsSize="large">API Document</Button>
+    <Button target="_blank" href={data.swagger} bsStyle="primary" bsSize="large">API Document</Button>
   </Panel>
 );
 

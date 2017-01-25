@@ -16,7 +16,13 @@ import HowPage from './HowPage.js';
 import SettingPage from './SettingPage.js';
 import DocumentPage from './DocumentPage.js';
 
-import {getGraphData, getSettingData, getServiceCallInfoData, getServiceInfoData} from './actions';
+import {
+  getGraphData,
+  getSettingData,
+  getServiceCallInfoData,
+  getServiceInfoData,
+  getEndpointInfoData,
+} from './actions';
 
 const logger = createLogger();
 
@@ -34,6 +40,7 @@ store.dispatch(getGraphData());
 store.dispatch(getSettingData());
 store.dispatch(getServiceCallInfoData());
 store.dispatch(getServiceInfoData());
+store.dispatch(getEndpointInfoData());
 
 ReactDOM.render(
   <Provider store={store}>

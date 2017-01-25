@@ -220,7 +220,6 @@ function draw(graph, dispatch){
 
 class Graph extends Component {
   componentDidMount() {
-    this.props.getGraphData();
     if('serviceWithEndpointPair' in this.props.data){
       draw(this.props.data, this.props.dispatch);
     }

@@ -10,9 +10,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getGraphData: () => {
-      dispatch(getGraphData());
-    }
   };
 }
 

@@ -32,13 +32,13 @@ const ServiceEndpointInfo = ({data}) => (
         </Highlight>
       </Tab>
       <Tab eventKey={2} title="Shell">
-        <Highlight className='java'>
-          {data.code.cli}
+        <Highlight className='sh'>
+          {data.code.curl}
         </Highlight>
       </Tab>
       <Tab eventKey={3} title="NodeJs">
-        <Highlight className='javascript'>
-          {data.code.js}
+        <Highlight className='js'>
+          {data.code.node}
         </Highlight>
       </Tab>
     </Tabs>

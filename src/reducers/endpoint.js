@@ -1,3 +1,4 @@
+import {ENDPOINT_INFO_LOADED} from '../actions';
 const init = [
   {
     'id': 'easylearn-note endpoint / POST',
@@ -42,6 +43,8 @@ const init = [
 ];
 const app = (state = init, action) => {
   switch (action.type) {
+    case ENDPOINT_INFO_LOADED:
+      return action.data;
     default:
       return state;
   }
