@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ServiceEndpointInfo from './ServiceEndpointInfo.js';
 import ServiceInfo from './ServiceInfo.js';
 import ServiceCallInfo from './ServiceCallInfo.js';
+import SidebarAlert from './SidebarAlert.js';
 
 class SidebarContainer extends Component {
   getEndpointInfo() {
@@ -27,9 +28,17 @@ class SidebarContainer extends Component {
     }
     return null;
   }
+  getAlert() {
+    let {showAlert, alertData,} = this.props;
+    if (showAlert) {
+      return (<SidebarAlert data={alertData}/>)
+    }
+    return null;
+  }
   render() {
     return (
       <div>
+        {this.getAlert()}
         {this.getEndpointInfo()}
         {this.getServiceInfo()}
         {this.getServiceCallInfo()}
@@ -44,6 +53,7 @@ function mapStateToProps(state) {
     showService,
     showServiceCall,
     showEndpoint,
+    showAlert: false,
   };
   if (showService) {
     const service = state.service.find((i) => i.id === state.sidebar.serviceId);
@@ -53,13 +63,21 @@ function mapStateToProps(state) {
     const endpoint = state.endpoint.find((i) => i.id === state.sidebar.endpointId);
     result.endpointData = endpoint;
   }
-  if (showServiceCall) {
+  if (showServiceCall && !state.setting.isNotSet) {
     const split = state.sidebar.serviceCallId.split(' ');
     const consumer = split[0];
     const provider = split[1];
     const serviceCallData = state.serviceCall.find((i) => i.consumer === consumer && i.provider===provider);
 
     result.serviceCallData = serviceCallData;
+  }
+  else if(showServiceCall && state.setting.isNotSet){
+    result.showAlert = true;
+    result.showServiceCall = false;
+    result.alertData = {
+      title: 'Pact Broker Host',
+      text: 'Please set the Pact Broker link to show the pact DSL.'
+    }
   }
   return result;
 }

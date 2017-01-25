@@ -58,8 +58,10 @@ class SettingPage extends Component {
                 <FormControl.Feedback/> {/* <HelpBlock>ex: http://localhost:8880/</HelpBlock> */}
               </FormGroup>
             </form>
-            <Button bsStyle="primary" bsSize="large" onClick={this.onSubmitClick}>
-              Submit
+            <Button bsStyle="primary" bsSize="large"
+              disabled={this.props.isLoading}
+              onClick={this.onSubmitClick}>
+              {this.props.isLoading?'Loading...':'Submit'}
             </Button>
           </Col>
         </Row>
@@ -68,4 +70,9 @@ class SettingPage extends Component {
   }
 }
 
-export default connect((state)=>({url:state.setting.url}))(SettingPage);
+export default connect((state) => (
+  {
+    url: state.setting.url,
+    isLoading: state.setting.isLoading,
+  }
+))(SettingPage);

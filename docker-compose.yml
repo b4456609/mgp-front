@@ -40,7 +40,7 @@ services:
   mongo:
     image: mongo
     ports:
-    - "6666:27017"
+    - "8081:27017"
     networks:
       - inside
   neo:

@@ -5,6 +5,7 @@ import {
   getServiceCallInfo,
   getEndpointInfo,
   buildSwaggerURL,
+  updateSetting,
 } from '../api/mgp.js';
 
 export const GRAPH_LOADED = 'GRAPH_LOADED';
@@ -63,7 +64,7 @@ export function getEndpointInfoData() {
 }
 
 export const SETTING_LOADED = 'SETTING_LOADED';
-export const SETTING_LOAD_ERROR = 'SETTING_LOAD_ERROR';
+export const SETTING_NOTSET = 'SETTING_NOTSET';
 export function getSettingData() {
   return (dispatch) => {
     getSetting()
@@ -72,11 +73,16 @@ export function getSettingData() {
           type: SETTING_LOADED,
           data
         });
-      }).catch(function(ex) {
-        console.log('parsing failed', ex)
-        dispatch({
-          type: SETTING_LOAD_ERROR,
-        });
+      }).catch(function(error) {
+        if(error.response.status === 404){
+          console.log("Not found");
+          dispatch({
+            type: SETTING_NOTSET,
+          });
+        }
+        else{
+          console.log('parsing failed', error)
+        }
       })
   };
 }
@@ -97,9 +103,22 @@ export function onServiceCallClick(id){
   }
 }
 export const ON_SAVE_SETTING = 'ON_SAVE_SETTING';
+export const SUCCESS_UPLOAD_SETTING = 'SUCCESS_UPLOAD_SETTING';
+export const FAIL_UPLOAD_SETTING = 'FAIL_UPLOAD_SETTING';
 export function onSaveSetting(url) {
-  return {
-    type: ON_SAVE_SETTING,
-    url
-  }
+  return (dispatch) => {
+    dispatch({
+      type: ON_SAVE_SETTING,
+      url
+    });
+    updateSetting(url)
+      .then((response) => {
+        if (response.ok) {
+          dispatch({type: SUCCESS_UPLOAD_SETTING});
+        }
+        else{
+          dispatch({type: FAIL_UPLOAD_SETTING});
+        }
+      });
+  };
 }

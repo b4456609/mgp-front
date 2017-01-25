@@ -18,15 +18,15 @@ export function updateSetting(url) {
     headers: {
       "Content-Type": "application/json"
     }
-  }).catch(function(ex) {
-    console.log('parsing failed', ex)
   });
 }
 
 export function getSetting() {
   return fetch(base + '/api/pact/config').then(function(response) {
     if (!response.ok) {
-      throw Error(response.statusText);
+      let error = new Error(response.statusText);
+      error.response = response;
+      throw error;
     }
     return response;
   }).then(function(response) {
@@ -38,7 +38,7 @@ export function getServiceInfo() {
   return fetch(base + '/api/graph/service').then(function(response) {
     console.log(response);
     if (!response.ok) {
-      throw Error(response.statusText);
+      throw new Error(response.statusText);
     }
     return response;
   }).then(function(response) {
@@ -50,7 +50,7 @@ export function getServiceCallInfo() {
   return fetch(base + '/api/graph/serviceCall').then(function(response) {
     console.log(response);
     if (!response.ok) {
-      throw Error(response.statusText);
+      throw new Error(response.statusText);
     }
     return response;
   }).then(function(response) {
@@ -62,7 +62,7 @@ export function getEndpointInfo() {
   return fetch(base + '/api/graph/endpoint').then(function(response) {
     console.log(response);
     if (!response.ok) {
-      throw Error(response.statusText);
+      throw new Error(response.statusText);
     }
     return response;
   }).then(function(response) {
