@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import Graph from './Graph.js';
-import { getGraphData } from '../../actions';
 
 function mapStateToProps(state) {
   return {
