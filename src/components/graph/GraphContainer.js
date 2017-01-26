@@ -3,7 +3,8 @@ import Graph from './Graph.js';
 
 function mapStateToProps(state) {
   return {
-    data: state.graph.data
+    data: state.graph.data,
+    showCyclic: state.app.showCyclic,
   };
 }
 
