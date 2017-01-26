@@ -5,6 +5,7 @@ import ServiceInfo from './ServiceInfo.js';
 import ServiceCallInfo from './ServiceCallInfo.js';
 import SidebarAlert from './SidebarAlert.js';
 import GraphOptions from './GraphOptions.js';
+import ScenarioInfo from './ScenarioInfo.js';
 import {setCyclic} from '../../actions';
 
 class SidebarContainer extends Component {
@@ -46,6 +47,7 @@ class SidebarContainer extends Component {
         {this.getEndpointInfo()}
         {this.getServiceInfo()}
         {this.getServiceCallInfo()}
+        <ScenarioInfo />
       </div>
     );
   }
