@@ -5,8 +5,10 @@ import endpoint from './endpoint.js';
 import sidebar from './sidebar.js';
 import serviceCall from './serviceCall.js';
 import setting from './setting.js';
+import app from './app.js';
 
 const Reducers = combineReducers({
+  app,
   sidebar,
   graph,
   service,

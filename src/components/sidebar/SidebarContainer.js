@@ -4,10 +4,12 @@ import ServiceEndpointInfo from './ServiceEndpointInfo.js';
 import ServiceInfo from './ServiceInfo.js';
 import ServiceCallInfo from './ServiceCallInfo.js';
 import SidebarAlert from './SidebarAlert.js';
+import GraphOptions from './GraphOptions.js';
+import {setCyclic} from '../../actions';
 
 class SidebarContainer extends Component {
   getEndpointInfo() {
-    let {showEndpoint, endpointData,} = this.props;
+    let {showEndpoint, endpointData} = this.props;
     if (showEndpoint) {
       return (<ServiceEndpointInfo data={endpointData}/>)
     }
@@ -36,8 +38,10 @@ class SidebarContainer extends Component {
     return null;
   }
   render() {
+    let {setCyclic,showCyclic} = this.props;
     return (
       <div>
+        <GraphOptions showCyclic={showCyclic} setCyclic={setCyclic}/>
         {this.getAlert()}
         {this.getEndpointInfo()}
         {this.getServiceInfo()}
@@ -54,6 +58,7 @@ function mapStateToProps(state) {
     showServiceCall,
     showEndpoint,
     showAlert: false,
+    showCyclic: state.app.showCyclic,
   };
   if (showService) {
     const service = state.service.find((i) => i.id === state.sidebar.serviceId);
@@ -82,14 +87,14 @@ function mapStateToProps(state) {
   return result;
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     getGraphData: () => {
-//       dispatch(getGraphData());
-//     }
-//   };
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    setCyclic: (checked) => {
+      dispatch(setCyclic(checked));
+    }
+  };
+}
 
 export default connect(mapStateToProps,
-// mapDispatchToProps
+mapDispatchToProps
 )(SidebarContainer);

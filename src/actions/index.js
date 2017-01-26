@@ -122,3 +122,11 @@ export function onSaveSetting(url) {
       });
   };
 }
+
+export const ON_CYCLIC_CHANGE = 'ON_CYCLIC_CHANGE';
+export function setCyclic(checked){
+  return {
+    type: ON_CYCLIC_CHANGE,
+    checked
+  }
+}
