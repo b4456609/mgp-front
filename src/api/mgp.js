@@ -4,7 +4,8 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 export function getGraph() {
-  return fetch(base + '/api/graph/visual').then(function(response) {
+  return fetch('/test1.json').then(function(response) {
+  // return fetch(base + '/api/graph/visual').then(function(response) {
     return response.json();
   }).catch(function(ex) {
     console.log('parsing failed', ex)
