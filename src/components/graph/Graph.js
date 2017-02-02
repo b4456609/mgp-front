@@ -107,7 +107,7 @@ function draw(graph, dispatch){
     //click on endpoint, service and service call
     circle
       .on('click', function(i){
-        dispatch(onNodeClick(i.id));
+        dispatch(onNodeClick(i.id, i.group));
       });
     link
       .on('click', function(i){

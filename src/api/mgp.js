@@ -23,54 +23,49 @@ export function updateSetting(pactHostUrl, bddGitUrl) {
 }
 
 export function getSetting() {
-  return fetch(base + '/api/setting').then(function(response) {
-    if (!response.ok) {
-      let error = new Error(response.statusText);
-      error.response = response;
-      throw error;
-    }
-    return response;
-  }).then(function(response) {
+  return fetch(base + '/api/setting').then(errorHandle)
+  .then(function(response) {
     return response.json();
   });
 }
 
 export function getServiceInfo() {
-  return fetch(base + '/api/graph/service').then(function(response) {
-    console.log(response);
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response;
-  }).then(function(response) {
+  return fetch(base + '/api/graph/service').then(errorHandle)
+  .then(function(response) {
     return response.json();
   });
 }
 
 export function getServiceCallInfo() {
-  return fetch(base + '/api/graph/serviceCall').then(function(response) {
-    console.log(response);
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response;
-  }).then(function(response) {
+  return fetch(base + '/api/graph/serviceCall').then(errorHandle)
+  .then(function(response) {
     return response.json();
   });
 }
 
 export function getEndpointInfo() {
-  return fetch(base + '/api/graph/endpoint').then(function(response) {
-    console.log(response);
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response;
-  }).then(function(response) {
+  return fetch(base + '/api/graph/endpoint').then(errorHandle)
+  .then(function(response) {
+    return response.json();
+  });
+}
+
+export function getScenarioInfo() {
+  return fetch(base + '/api/graph/scenario').then(errorHandle)
+  .then(function(response) {
     return response.json();
   });
 }
 
 export function buildSwaggerURL(serviceName){
   return `/swagger/index.html?url=${window.location.origin}/api/swagger/${serviceName}`;
+}
+
+function errorHandle(response) {
+  if (!response.ok) {
+    let error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+  return response;
 }

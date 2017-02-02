@@ -6,7 +6,7 @@ import ServiceCallInfo from './ServiceCallInfo.js';
 import SidebarAlert from './SidebarAlert.js';
 import GraphOptions from './GraphOptions.js';
 import ScenarioInfo from './ScenarioInfo.js';
-import {setCyclic} from '../../actions';
+import {setCyclic, showModal} from '../../actions';
 
 class SidebarContainer extends Component {
   getEndpointInfo() {
@@ -31,6 +31,14 @@ class SidebarContainer extends Component {
     }
     return null;
   }
+  getScenarioInfo() {
+    let {showScenario, scenarioData, showFeature} = this.props;
+    console.log(scenarioData);
+    if (showScenario) {
+      return (<ScenarioInfo data={scenarioData} showFeature={showFeature}/>)
+    }
+    return null;
+  }
   getAlert() {
     let {showAlert, alertData,} = this.props;
     if (showAlert) {
@@ -47,18 +55,19 @@ class SidebarContainer extends Component {
         {this.getEndpointInfo()}
         {this.getServiceInfo()}
         {this.getServiceCallInfo()}
-        <ScenarioInfo />
+        {this.getScenarioInfo()}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const {showService, showServiceCall, showEndpoint,} = state.sidebar;
+  const {showService, showServiceCall, showEndpoint,showScenario} = state.sidebar;
   let result = {
     showService,
     showServiceCall,
     showEndpoint,
+    showScenario,
     showAlert: false,
     showCyclic: state.app.showCyclic,
   };
@@ -69,6 +78,14 @@ function mapStateToProps(state) {
   if (showEndpoint) {
     const endpoint = state.endpoint.find((i) => i.id === state.sidebar.endpointId);
     result.endpointData = endpoint;
+  }
+  if (showScenario) {
+    console.log(state.sidebar.scenarioId);
+    const scenario = state.scenario.scenarios.find((i) => i.id === state.sidebar.scenarioId);
+    console.log(scenario);
+    const feature = state.scenario.features.find((i) => i.id === scenario.featureId)
+    console.log(feature);
+    result.scenarioData = Object.assign({}, scenario, {feature:feature});
   }
   if (showServiceCall && !state.setting.isNotSet) {
     const split = state.sidebar.serviceCallId.split(' ');
@@ -93,6 +110,9 @@ function mapDispatchToProps(dispatch) {
   return {
     setCyclic: (checked) => {
       dispatch(setCyclic(checked));
+    },
+    showFeature: (title, body) => {
+      dispatch(showModal(title, body));
     }
   };
 }

@@ -6,6 +6,7 @@ import {
   getEndpointInfo,
   buildSwaggerURL,
   updateSetting,
+  getScenarioInfo,
 } from '../api/mgp.js';
 
 export const GRAPH_LOADED = 'GRAPH_LOADED';
@@ -63,11 +64,25 @@ export function getEndpointInfoData() {
   };
 }
 
+export const SCENARIO_INFO_LOADED = 'SCENARIO_INFO_LOADED';
+export function getScenarioInfoData() {
+  return (dispatch) => {
+    getScenarioInfo()
+      .then((data) => {
+        dispatch({
+          type: SCENARIO_INFO_LOADED,
+          data
+        });
+      })
+  };
+}
+
 export const ON_NODE_CLICK = 'ON_NODE_CLICK';
-export function onNodeClick(id) {
+export function onNodeClick(id, group) {
   return {
     type: ON_NODE_CLICK,
-    id
+    id,
+    group,
   }
 }
 
@@ -121,5 +136,21 @@ export function setCyclic(checked){
   return {
     type: ON_CYCLIC_CHANGE,
     checked
+  }
+}
+
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export function showModal(header, body) {
+  return {
+    type: SHOW_MODAL,
+    header,
+    body
+  }
+}
+
+export function closeModal() {
+  return {
+    type: CLOSE_MODAL
   }
 }
