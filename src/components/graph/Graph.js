@@ -43,7 +43,7 @@ function draw(graph, dispatch){
           }
           return -200;
         })
-        .distanceMin(200))
+        .distanceMax(100))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collide", d3.forceCollide(60));
 

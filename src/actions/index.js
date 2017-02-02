@@ -63,30 +63,6 @@ export function getEndpointInfoData() {
   };
 }
 
-export const SETTING_LOADED = 'SETTING_LOADED';
-export const SETTING_NOTSET = 'SETTING_NOTSET';
-export function getSettingData() {
-  return (dispatch) => {
-    getSetting()
-      .then((data) => {
-        dispatch({
-          type: SETTING_LOADED,
-          data
-        });
-      }).catch(function(error) {
-        if(error.response.status === 404){
-          console.log("Not found");
-          dispatch({
-            type: SETTING_NOTSET,
-          });
-        }
-        else{
-          console.log('parsing failed', error)
-        }
-      })
-  };
-}
-
 export const ON_NODE_CLICK = 'ON_NODE_CLICK';
 export function onNodeClick(id) {
   return {
@@ -102,16 +78,33 @@ export function onServiceCallClick(id){
     id
   }
 }
+
+export const SETTING_LOADED = 'SETTING_LOADED';
+export function getSettingData() {
+  return (dispatch) => {
+    getSetting()
+      .then((data) => {
+        dispatch({
+          type: SETTING_LOADED,
+          data
+        });
+      }).catch(function(error) {
+          console.log('error', error)
+      })
+  };
+}
+
 export const ON_SAVE_SETTING = 'ON_SAVE_SETTING';
 export const SUCCESS_UPLOAD_SETTING = 'SUCCESS_UPLOAD_SETTING';
 export const FAIL_UPLOAD_SETTING = 'FAIL_UPLOAD_SETTING';
-export function onSaveSetting(url) {
+export function onSaveSetting(pactHostUrl, bddGitUrl) {
   return (dispatch) => {
     dispatch({
       type: ON_SAVE_SETTING,
-      url
+      pactHostUrl,
+      bddGitUrl
     });
-    updateSetting(url)
+    updateSetting(pactHostUrl, bddGitUrl)
       .then((response) => {
         if (response.ok) {
           dispatch({type: SUCCESS_UPLOAD_SETTING});

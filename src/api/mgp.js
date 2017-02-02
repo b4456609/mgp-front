@@ -4,18 +4,18 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 export function getGraph() {
-  return fetch('/test1.json').then(function(response) {
-  // return fetch(base + '/api/graph/visual').then(function(response) {
+  // return fetch('/test1.json').then(function(response) {
+  return fetch(base + '/api/graph/visual').then(function(response) {
     return response.json();
   }).catch(function(ex) {
     console.log('parsing failed', ex)
   });
 }
 
-export function updateSetting(url) {
-  return fetch(base + '/api/pact/config', {
+export function updateSetting(pactHostUrl, bddGitUrl) {
+  return fetch(base + '/api/setting', {
     method: 'POST',
-    body: JSON.stringify({url}),
+    body: JSON.stringify({pactHostUrl, bddGitUrl}),
     headers: {
       "Content-Type": "application/json"
     }
@@ -23,7 +23,7 @@ export function updateSetting(url) {
 }
 
 export function getSetting() {
-  return fetch(base + '/api/pact/config').then(function(response) {
+  return fetch(base + '/api/setting').then(function(response) {
     if (!response.ok) {
       let error = new Error(response.statusText);
       error.response = response;
