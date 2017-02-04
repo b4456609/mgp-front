@@ -7,7 +7,8 @@ import {
   FormGroup,
   ControlLabel,
   FormControl,
-  Button
+  Button,
+  HelpBlock
 } from 'react-bootstrap';
 import {onSaveSetting} from './actions';
 
@@ -19,15 +20,27 @@ class SettingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      packBrokerUrl: this.props.url,
+      pactHostUrl: this.props.pactHostUrl,
+      bddGitUrl: this.props.bddGitUrl,
     };
     this.handleChange = this.handleChange.bind(this);
     this.getValidationState = this.getValidationState.bind(this);
+    this.handleBDDChange = this.handleBDDChange.bind(this);
+    this.getBDDValidationState = this.getBDDValidationState.bind(this);
     this.onSubmitClick = this.onSubmitClick.bind(this);
   }
 
   getValidationState() {
-    let result = this.state.packBrokerUrl.match(urlRegex);
+    let result = this.state.pactHostUrl.match(urlRegex);
+    if (result !== null) {
+      return 'success';
+    }
+    return 'error';
+  }
+
+  getBDDValidationState() {
+    console.log(this.state);
+    let result = this.state.bddGitUrl.match(urlRegex);
     if (result !== null) {
       return 'success';
     }
@@ -35,14 +48,17 @@ class SettingPage extends Component {
   }
 
   handleChange(e) {
-    this.setState({packBrokerUrl: e.target.value});
+    this.setState({pactHostUrl: e.target.value});
+  }
+
+  handleBDDChange(e) {
+    this.setState({bddGitUrl: e.target.value});
   }
 
   onSubmitClick() {
     if (this.getValidationState() === 'error')
       return;
-    console.log(this.state.packBrokerUrl);
-    this.props.dispatch(onSaveSetting(this.state.packBrokerUrl))
+    this.props.dispatch(onSaveSetting(this.state.pactHostUrl,this.state.bddGitUrl))
   }
 
   render() {
@@ -54,8 +70,17 @@ class SettingPage extends Component {
             <form>
               <FormGroup controlId="formBasicText" validationState={this.getValidationState()}>
                 <ControlLabel>Pact broker url</ControlLabel>
-                <FormControl type="text" value={this.state.packBrokerUrl} placeholder="http://localhost:8880/" onChange={this.handleChange}/>
-                <FormControl.Feedback/> {/* <HelpBlock>ex: http://localhost:8880/</HelpBlock> */}
+                <FormControl type="text" value={this.state.pactHostUrl} placeholder="http://localhost:8880/" onChange={this.handleChange}/>
+                <FormControl.Feedback/>
+                <HelpBlock>ex: http://localhost:8880/</HelpBlock>
+              </FormGroup>
+              <FormGroup controlId="formBasicText" validationState={this.getBDDValidationState()}>
+                <ControlLabel>BDD Git url</ControlLabel>
+                <FormControl type="text" value={this.state.bddGitUrl} placeholder="https://github.com/b4456609/easylearn-uat.git" onChange={this.handleBDDChange}/>
+                <FormControl.Feedback/>
+                <HelpBlock>
+                  ex: https://github.com/b4456609/easylearn-uat.git
+                </HelpBlock>
               </FormGroup>
             </form>
             <Button bsStyle="primary" bsSize="large"
@@ -72,7 +97,8 @@ class SettingPage extends Component {
 
 export default connect((state) => (
   {
-    url: state.setting.url,
+    pactHostUrl: state.setting.pactHostUrl,
+    bddGitUrl: state.setting.bddGitUrl,
     isLoading: state.setting.isLoading,
   }
 ))(SettingPage);

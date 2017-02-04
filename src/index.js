@@ -22,6 +22,7 @@ import {
   getServiceCallInfoData,
   getServiceInfoData,
   getEndpointInfoData,
+  getScenarioInfoData,
 } from './actions';
 
 const logger = createLogger();
@@ -41,6 +42,7 @@ store.dispatch(getSettingData());
 store.dispatch(getServiceCallInfoData());
 store.dispatch(getServiceInfoData());
 store.dispatch(getEndpointInfoData());
+store.dispatch(getScenarioInfoData());
 
 ReactDOM.render(
   <Provider store={store}>

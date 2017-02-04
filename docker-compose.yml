@@ -21,6 +21,12 @@ services:
       - "3001:3001"
     networks:
       - inside
+  bdd:
+    build: ../mgp-bdd
+    ports:
+      - "3005:3005"
+    networks:
+      - inside
   api:
     build: ../mgpback
     ports:
@@ -30,6 +36,7 @@ services:
     links:
       - mongo
       - neo
+      - bdd
     environment:
       - MONGO_DB=mongo
       - NEO4J_DB=http://neo:7474

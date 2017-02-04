@@ -39,11 +39,12 @@ function draw(graph, dispatch){
         .strength(function(...i){
           //relationship of node and endpoint
           if('id' in i[0] && i[0].id.indexOf(' ')===-1){
-            return 100;
+            return 500;
           }
-          return -200;
+          return -600;
         })
-        .distanceMin(200))
+        .distanceMax(200)
+        .distanceMin(20))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collide", d3.forceCollide(60));
 
@@ -68,10 +69,10 @@ function draw(graph, dispatch){
     .attr('class', function (d) {
       return "call-link " + d.className
     });
-
+    let lineData = [].concat(graph.serviceWithEndpointPair).concat(graph.scenarioEndpointPair);
   var servicesDep = svg
     .selectAll("line")
-    .data(graph.serviceWithEndpointPair)
+    .data(lineData)
     .enter()
     .append("line")
     .attr('class', function (d) {
@@ -106,7 +107,7 @@ function draw(graph, dispatch){
     //click on endpoint, service and service call
     circle
       .on('click', function(i){
-        dispatch(onNodeClick(i.id));
+        dispatch(onNodeClick(i.id, i.group));
       });
     link
       .on('click', function(i){
@@ -157,7 +158,7 @@ function draw(graph, dispatch){
     .nodes(graph.nodes)
     .on("tick", ticked);
   let gr = [];
-  gr = gr.concat(graph.providerEndpointWithConsumerPair).concat(graph.serviceWithEndpointPair);
+  gr = gr.concat(graph.providerEndpointWithConsumerPair).concat(graph.serviceWithEndpointPair).concat(graph.scenarioEndpointPair);
   simulation.force("link")
     .links(gr)
 

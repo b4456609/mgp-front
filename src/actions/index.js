@@ -6,6 +6,7 @@ import {
   getEndpointInfo,
   buildSwaggerURL,
   updateSetting,
+  getScenarioInfo,
 } from '../api/mgp.js';
 
 export const GRAPH_LOADED = 'GRAPH_LOADED';
@@ -63,35 +64,25 @@ export function getEndpointInfoData() {
   };
 }
 
-export const SETTING_LOADED = 'SETTING_LOADED';
-export const SETTING_NOTSET = 'SETTING_NOTSET';
-export function getSettingData() {
+export const SCENARIO_INFO_LOADED = 'SCENARIO_INFO_LOADED';
+export function getScenarioInfoData() {
   return (dispatch) => {
-    getSetting()
+    getScenarioInfo()
       .then((data) => {
         dispatch({
-          type: SETTING_LOADED,
+          type: SCENARIO_INFO_LOADED,
           data
         });
-      }).catch(function(error) {
-        if(error.response.status === 404){
-          console.log("Not found");
-          dispatch({
-            type: SETTING_NOTSET,
-          });
-        }
-        else{
-          console.log('parsing failed', error)
-        }
       })
   };
 }
 
 export const ON_NODE_CLICK = 'ON_NODE_CLICK';
-export function onNodeClick(id) {
+export function onNodeClick(id, group) {
   return {
     type: ON_NODE_CLICK,
-    id
+    id,
+    group,
   }
 }
 
@@ -102,16 +93,33 @@ export function onServiceCallClick(id){
     id
   }
 }
+
+export const SETTING_LOADED = 'SETTING_LOADED';
+export function getSettingData() {
+  return (dispatch) => {
+    getSetting()
+      .then((data) => {
+        dispatch({
+          type: SETTING_LOADED,
+          data
+        });
+      }).catch(function(error) {
+          console.log('error', error)
+      })
+  };
+}
+
 export const ON_SAVE_SETTING = 'ON_SAVE_SETTING';
 export const SUCCESS_UPLOAD_SETTING = 'SUCCESS_UPLOAD_SETTING';
 export const FAIL_UPLOAD_SETTING = 'FAIL_UPLOAD_SETTING';
-export function onSaveSetting(url) {
+export function onSaveSetting(pactHostUrl, bddGitUrl) {
   return (dispatch) => {
     dispatch({
       type: ON_SAVE_SETTING,
-      url
+      pactHostUrl,
+      bddGitUrl
     });
-    updateSetting(url)
+    updateSetting(pactHostUrl, bddGitUrl)
       .then((response) => {
         if (response.ok) {
           dispatch({type: SUCCESS_UPLOAD_SETTING});
@@ -128,5 +136,21 @@ export function setCyclic(checked){
   return {
     type: ON_CYCLIC_CHANGE,
     checked
+  }
+}
+
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export function showModal(header, body) {
+  return {
+    type: SHOW_MODAL,
+    header,
+    body
+  }
+}
+
+export function closeModal() {
+  return {
+    type: CLOSE_MODAL
   }
 }

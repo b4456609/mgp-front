@@ -5,6 +5,7 @@ import {
   NavItem,
 } from 'react-bootstrap';
 import './App.css';
+import MyModal from './components/MyModal.js';
 import { browserHistory } from 'react-router'
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
         {this.props.children}
+        <MyModal />
       </div>
     );
   }
