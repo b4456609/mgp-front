@@ -87,21 +87,21 @@ function mapStateToProps(state) {
     console.log(feature);
     result.scenarioData = Object.assign({}, scenario, {feature:feature});
   }
-  if (showServiceCall && !state.setting.isNotSet) {
+  if (showServiceCall) {
     const split = state.sidebar.serviceCallId.split(' ');
     const consumer = split[0];
     const provider = split[1];
     const serviceCallData = state.serviceCall.find((i) => i.consumer === consumer && i.provider===provider);
 
     result.serviceCallData = serviceCallData;
-  }
-  else if(showServiceCall && state.setting.isNotSet){
-    result.showAlert = true;
-    result.showServiceCall = false;
-    result.alertData = {
-      title: 'Pact Broker Host',
-      text: 'Please set the Pact Broker link to show the pact DSL.'
-    }
+    // show alert if the pact is not show
+    if(state.setting.isPactNotSet){
+      result.showAlert = true;
+      result.alertData = {
+        title: 'Pact Broker Host',
+        text: 'Please set the Pact Broker link to show the pact DSL.'
+      }
+      }
   }
   return result;
 }

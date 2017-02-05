@@ -11,7 +11,7 @@ const setting = (state = init, action) => {
       return Object.assign({}, state, {
         pactHostUrl: action.data.pactHostUrl,
         bddGitUrl: action.data.bddGitUrl,
-        isPactNotSet: action.pactHostUrl === ''
+        isPactNotSet: action.data.pactHostUrl === ''
           ? true
           : false
       })
