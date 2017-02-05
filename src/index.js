@@ -17,12 +17,7 @@ import SettingPage from './SettingPage.js';
 import DocumentPage from './DocumentPage.js';
 
 import {
-  getGraphData,
-  getSettingData,
-  getServiceCallInfoData,
-  getServiceInfoData,
-  getEndpointInfoData,
-  getScenarioInfoData,
+  updateAppDataAndRefresh
 } from './actions';
 
 const logger = createLogger();
@@ -37,12 +32,7 @@ debugMidware.push(applyMiddleware(thunk, logger));
 const store = createStore(reducer, ...debugMidware);
 
 //get init data
-store.dispatch(getGraphData());
-store.dispatch(getSettingData());
-store.dispatch(getServiceCallInfoData());
-store.dispatch(getServiceInfoData());
-store.dispatch(getEndpointInfoData());
-store.dispatch(getScenarioInfoData());
+store.dispatch(updateAppDataAndRefresh());
 
 ReactDOM.render(
   <Provider store={store}>

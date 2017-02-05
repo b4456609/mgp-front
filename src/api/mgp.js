@@ -29,6 +29,11 @@ export function getSetting() {
   });
 }
 
+export function updateAppData() {
+  return fetch(base + '/api/update', {
+    method: 'POST',}).then(errorHandle);
+}
+
 export function getServiceInfo() {
   return fetch(base + '/api/graph/service').then(errorHandle)
   .then(function(response) {

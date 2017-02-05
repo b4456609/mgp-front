@@ -7,7 +7,23 @@ import {
   buildSwaggerURL,
   updateSetting,
   getScenarioInfo,
+  updateAppData,
 } from '../api/mgp.js';
+
+export function updateAppDataAndRefresh() {
+  return (dispatch) => {
+    updateAppData()
+      .then(()=>{
+        console.log('a');
+        dispatch(getGraphData());
+        dispatch(getSettingData());
+        dispatch(getServiceCallInfoData());
+        dispatch(getServiceInfoData());
+        dispatch(getEndpointInfoData());
+        dispatch(getScenarioInfoData());
+      })
+  }
+}
 
 export const GRAPH_LOADED = 'GRAPH_LOADED';
 export function getGraphData() {
