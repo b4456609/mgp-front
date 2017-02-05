@@ -14,7 +14,6 @@ export function updateAppDataAndRefresh() {
   return (dispatch) => {
     updateAppData()
       .then(()=>{
-        console.log('a');
         dispatch(getGraphData());
         dispatch(getSettingData());
         dispatch(getServiceCallInfoData());
