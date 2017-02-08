@@ -4,10 +4,6 @@ import {
   Tabs,
   Tab,
   Table,
-  Button,
-  FormGroup,
-  InputGroup,
-  FormControl
 } from 'react-bootstrap';
 import Highlight from 'react-highlight';
 
