@@ -10,9 +10,9 @@ import {setCyclic, showModal} from '../../actions';
 
 class SidebarContainer extends Component {
   getEndpointInfo() {
-    let {showEndpoint, endpointData} = this.props;
+    let {showEndpoint, endpointData, copyScenarioEndpoint} = this.props;
     if (showEndpoint) {
-      return (<ServiceEndpointInfo data={endpointData}/>)
+      return (<ServiceEndpointInfo data={endpointData} copyScenarioEndpoint={copyScenarioEndpoint}/>)
     }
     return null;
   }
@@ -78,6 +78,28 @@ function mapStateToProps(state) {
   if (showEndpoint) {
     const endpoint = state.endpoint.find((i) => i.id === state.sidebar.endpointId);
     result.endpointData = endpoint;
+    result.copyScenarioEndpoint = () =>{
+        // Select the email link anchor text  
+        var annotation = document.querySelector('.js-emailcopybtn');  
+        var range = document.createRange();  
+        range.selectNode(annotation);  
+        window.getSelection().addRange(range);
+
+        console.log(range);
+
+        try {  
+          // Now that we've selected the anchor text, execute the copy command  
+          var successful = document.execCommand('copy');  
+          var msg = successful ? 'successful' : 'unsuccessful';  
+          console.log('Copy command was ' + msg);  
+        } catch(err) {  
+          console.log('Oops, unable to copy');  
+        }
+
+        // Remove the selections - NOTE: Should use
+        // removeRange(range) when it is supported  
+        window.getSelection().removeAllRanges();  
+    };
   }
   if (showScenario) {
     console.log(state.sidebar.scenarioId);
@@ -101,7 +123,7 @@ function mapStateToProps(state) {
         title: 'Pact Broker Host',
         text: 'Please set the Pact Broker link to show the pact DSL.'
       }
-      }
+    }
   }
   return result;
 }

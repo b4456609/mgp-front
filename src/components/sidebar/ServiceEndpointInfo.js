@@ -3,7 +3,11 @@ import {
   Panel,
   Tabs,
   Tab,
-  Table
+  Table,
+  Button,
+  FormGroup,
+  InputGroup,
+  FormControl
 } from 'react-bootstrap';
 import Highlight from 'react-highlight';
 
@@ -42,6 +46,10 @@ const ServiceEndpointInfo = ({data}) => (
         </Highlight>
       </Tab>
     </Tabs>
+    <h5>Scenario Annoation</h5>
+    <Highlight className="java">
+      {`@${data.id}`}
+    </Highlight>
   </Panel>
 );
 
