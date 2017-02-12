@@ -41,13 +41,14 @@ services:
       - MONGO_DB=mongo
       - NEO4J_DB=http://neo:7474
       - CODEGEN_HOST=http://codegen:3001/
+      - BDD_HOST=http://bdd:3005
     depends_on:
       - mongo
       - neo
   mongo:
     image: mongo
     ports:
-    - "8081:27017"
+    - "27017:27017"
     networks:
       - inside
   neo:
