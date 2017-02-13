@@ -24,9 +24,10 @@ class App extends Component {
           <Navbar.Collapse>
             <Nav pullRight>
               <NavItem eventKey={1} onClick={()=>{browserHistory.push('/');}} >Graph</NavItem>
-              <NavItem eventKey={2} onClick={()=>{browserHistory.push('/setting');}} >Setting</NavItem>
+              <NavItem eventKey={3} onClick={()=>{browserHistory.push('/report');}} >Report</NavItem>
               <NavItem eventKey={3} onClick={()=>{browserHistory.push('/document');}} >Document</NavItem>
               <NavItem eventKey={4} onClick={()=>{browserHistory.push('/how');}} >How</NavItem>
+              <NavItem eventKey={2} onClick={()=>{browserHistory.push('/setting');}} >Setting</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

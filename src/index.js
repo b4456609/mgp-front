@@ -15,6 +15,7 @@ import GraphPage from './GraphPage.js';
 import HowPage from './HowPage.js';
 import SettingPage from './SettingPage.js';
 import DocumentPage from './DocumentPage.js';
+import ReportPage from './ReportPage.js';
 
 import {
   updateAppDataAndRefresh
@@ -42,6 +43,7 @@ ReactDOM.render(
         <Route path="document" component={DocumentPage} />
         <Route path="how" component={HowPage} />
         <Route path="setting" component={SettingPage} />
+        <Route path="report" component={ReportPage} />
       </Route>
     </Router>
   </Provider>, document.getElementById('root'));
