@@ -1,11 +1,10 @@
 import React from 'react';
 import {
   Panel,
-  Nav,
-  NavItem,
   ListGroup,
   ListGroupItem,
-  Badge
+  Badge,
+  Pager,
 } from 'react-bootstrap';
 import moment from 'moment';
 
@@ -13,9 +12,15 @@ const Option = ({}) => (
   <Panel collapsible defaultExpanded header="Test Information">
     <ListGroup>
       <ListGroupItem href="#" active>{moment().format('lll')}<Badge pill>Service Test</Badge></ListGroupItem>
-      <ListGroupItem href="#">Link 2<Badge pill>UAT</Badge></ListGroupItem>
-      <ListGroupItem href="#" disabled>Link 3</ListGroupItem>
+      <ListGroupItem href="#">{moment().format('lll')}<Badge pill>UAT</Badge></ListGroupItem>
+      <ListGroupItem href="#">{moment().format('lll')}</ListGroupItem>
+      <ListGroupItem href="#">{moment().format('lll')}<Badge pill>UAT</Badge></ListGroupItem>
+      <ListGroupItem href="#">{moment().format('lll')}</ListGroupItem>
     </ListGroup>
+    <Pager>
+      <Pager.Item previous href="#">&larr; Newer</Pager.Item>
+      <Pager.Item next href="#">Older &rarr;</Pager.Item>
+    </Pager>
   </Panel>
 );
 
