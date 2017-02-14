@@ -6,16 +6,26 @@ import {
   Badge,
   Pager,
 } from 'react-bootstrap';
-import moment from 'moment';
 
-const Option = ({}) => (
+const Option = ({data, selectReport, index}) => (
   <Panel collapsible defaultExpanded header="Test Information">
     <ListGroup>
-      <ListGroupItem href="#" active>{moment().format('lll')}<Badge pill>Service Test</Badge></ListGroupItem>
-      <ListGroupItem href="#">{moment().format('lll')}<Badge pill>UAT</Badge></ListGroupItem>
-      <ListGroupItem href="#">{moment().format('lll')}</ListGroupItem>
-      <ListGroupItem href="#">{moment().format('lll')}<Badge pill>UAT</Badge></ListGroupItem>
-      <ListGroupItem href="#">{moment().format('lll')}</ListGroupItem>
+      {data.map((item, i) => {
+        if (index === i) {
+          return (
+            <ListGroupItem key={item.timestamp} onClick={() => { selectReport(i); }} active>
+              {item.timestamp}
+              <Badge>{item.type}</Badge>
+            </ListGroupItem>
+          )
+        }
+        return (
+          <ListGroupItem key={item.timestamp} onClick={() => { selectReport(i); }} >
+            {item.timestamp}
+            <Badge>{item.type}</Badge>
+          </ListGroupItem>
+        )
+      })}
     </ListGroup>
     <Pager>
       <Pager.Item previous href="#">&larr; Newer</Pager.Item>
@@ -23,5 +33,12 @@ const Option = ({}) => (
     </Pager>
   </Panel>
 );
+
+Option.propTypes = {
+  data: React.PropTypes.arrayOf(React.PropTypes.shape({
+    timestamp: React.PropTypes.string.isRequired,
+    type: React.PropTypes.string.isRequired,
+  })).isRequired,
+}
 
 export default Option;

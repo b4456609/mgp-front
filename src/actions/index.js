@@ -8,7 +8,29 @@ import {
   updateSetting,
   getScenarioInfo,
   updateAppData,
+  getTestReport,
 } from '../api/mgp.js';
+
+export const SET_REPORT_SIDEBAR_INDEX = 'SET_REPORT_SIDEBAR_INDEX';
+export function setReportSidebarIndex(index){
+  return {
+    type: SET_REPORT_SIDEBAR_INDEX,
+    index
+  }
+}
+
+export const SERVICE_TEST_DATA_LOADED = 'SERVICE_TEST_DATA_LOADED';
+export function getTestReportData(){
+  return (dispatch) => {
+    getTestReport()
+      .then((data)=>{
+        dispatch({
+          type: SERVICE_TEST_DATA_LOADED,
+          data
+        })
+      })
+  }
+}
 
 export function updateAppDataAndRefresh() {
   return (dispatch) => {
@@ -156,11 +178,12 @@ export function setCyclic(checked){
 
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
-export function showModal(header, body) {
+export function showModal(header, body, modalType) {
   return {
     type: SHOW_MODAL,
     header,
-    body
+    body,
+    modalType
   }
 }
 

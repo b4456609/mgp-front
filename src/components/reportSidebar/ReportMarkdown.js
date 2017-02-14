@@ -7,16 +7,23 @@ import {
   Glyphicon
 } from 'react-bootstrap';
 
-const Option = ({}) => (
+const Option = ({data, showReport}) => (
   <Panel collapsible defaultExpanded header="Full Report">
     <ListGroup>
-      <ListGroupItem href="#"><Glyphicon glyph="file" /> Link 1 </ListGroupItem>
-      <ListGroupItem href="#">
-        <Glyphicon style={{ color: 'grey' }} glyph="file" />
-        {` Link 2`}
-        <Label style={{ float: 'right' }} bsStyle="danger">2 error</Label>
-      </ListGroupItem>
-      <ListGroupItem href="#"><Glyphicon glyph="file" /> Link 3</ListGroupItem>
+      <h3>Provider Report</h3>
+      {
+        data.map((item, i) => {
+          return (
+            <ListGroupItem key={i} onClick={()=>{showReport('Report', item.report)}}>
+              <Glyphicon style={{ color: 'grey' }} glyph="file" />
+              {` ${item.provider}`}
+              <Label style={{ float: 'right' }} bsStyle="danger">
+                {`${item.error} error`}
+              </Label>
+            </ListGroupItem>
+          )
+        })
+      }
     </ListGroup>
   </Panel>
 );

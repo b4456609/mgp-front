@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import marked from 'marked';
 import {
   Grid,
   Row,
@@ -8,11 +7,6 @@ import {
 import ReportSidebarContainer from './components/reportSidebar/ReportSidebarContainer'
 
 class ReportPage extends Component {
-  constructor() {
-    super()
-
-  }
-
   render() {
     return (
       <Grid fluid>
@@ -29,4 +23,3 @@ class ReportPage extends Component {
 }
 
 export default ReportPage;
-

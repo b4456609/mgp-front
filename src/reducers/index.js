@@ -8,6 +8,7 @@ import setting from './setting.js';
 import app from './app.js';
 import scenario from './scenario.js';
 import modal from './modal.js';
+import report from './report.js';
 
 const Reducers = combineReducers({
   app,
@@ -18,7 +19,8 @@ const Reducers = combineReducers({
   serviceCall,
   setting,
   scenario,
-  modal
+  modal,
+  report,
 });
 
 export default Reducers;

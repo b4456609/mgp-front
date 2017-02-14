@@ -111,8 +111,8 @@ function mapDispatchToProps(dispatch) {
     setCyclic: (checked) => {
       dispatch(setCyclic(checked));
     },
-    showFeature: (title, body) => {
-      dispatch(showModal(title, body));
+    showFeature: (body) => {
+      dispatch(showModal('Report', body, 'code'));
     }
   };
 }

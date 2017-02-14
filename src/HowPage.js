@@ -5,14 +5,8 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
-import Highlight from 'react-highlight';
 
-//no-useless-escape
-const uploadCode =
-  `curl -i -X POST \\
-  -H "Content-Type: multipart/form-data" \\
-  -F "file=@./mpd.json" http://localhost/api/upload`;
-let html = "";
+let html = '';
 
 // Synchronous highlighting with highlight.js
 marked.setOptions({
