@@ -23,7 +23,8 @@ const app = (state = {
         ...state,
         reportSideBarIsFirst: action.data.first,
         reportSideBarIsLast: action.data.last,
-        reportSideBarpage: action.data.number
+        reportSideBarpage: action.data.number,
+        reportSidebarIndex: 0
       }
     default:
       return state;

@@ -19,7 +19,6 @@ import ReportPage from './ReportPage.js';
 
 import {
   updateAppDataAndRefresh,
-  getGraphData
 } from './actions';
 
 const logger = createLogger();
@@ -34,8 +33,7 @@ debugMidware.push(applyMiddleware(thunk, logger));
 const store = createStore(reducer, ...debugMidware);
 
 //get init data
-// store.dispatch(updateAppDataAndRefresh());
-store.dispatch(getGraphData());
+store.dispatch(updateAppDataAndRefresh());
 
 ReactDOM.render(
   <Provider store={store}>

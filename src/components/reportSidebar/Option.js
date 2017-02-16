@@ -12,18 +12,20 @@ const Option = ({data, selectReport, index, isFirst, isLast, page, getReportData
   let previous = (
     <Pager.Item
       previous
-      onClick={() => { getReportData(page - 1) }}>
+      onClick={() => { console.log("pre")
+        getReportData(page - 1) }}>
       &larr; Newer
       </Pager.Item>
   );
   if (isFirst) {
     previous = (<Pager.Item disabled previous >&larr; Newer</Pager.Item>)
   }
-  let last = (<Pager.Item next >Older &rarr;</Pager.Item>)
+  let last = (<Pager.Item
+      onClick={() => { console.log("next")
+      getReportData(page + 1) }} next >Older &rarr;</Pager.Item>)
   if (isLast) {
     last = (<Pager.Item
       disabled
-      onClick={() => { getReportData(page + 1) }}
       next >
       Older &rarr;
     </Pager.Item>
@@ -50,7 +52,7 @@ const Option = ({data, selectReport, index, isFirst, isLast, page, getReportData
           )
         })}
       </ListGroup>
-      <Pager>
+      <Pager onSelect={(...a)=>{console.log(a)}}>
         {previous}
         {last}
       </Pager>

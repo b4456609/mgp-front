@@ -4,13 +4,15 @@ import {
   ListGroup,
   ListGroupItem,
   Label,
-  Glyphicon
+  Glyphicon,
+  Button
 } from 'react-bootstrap';
+import {getCucumberReportURL} from '../../api/bdd'
 
-const UATReport = ({data}) => (
-  <Panel collapsible defaultExpanded header="Full Report">
+const UATReport = ({data, timestamp}) => (
+  <Panel collapsible defaultExpanded header="UAT Report">
+    <h3>Scenario Report</h3>
     <ListGroup>
-      <h3>Scenario Report</h3>
       {
         data.map((item, i) => {
           let result = (
@@ -33,6 +35,7 @@ const UATReport = ({data}) => (
         })
       }
     </ListGroup>
+    <Button target="_blank" href={getCucumberReportURL(timestamp)} bsStyle="primary" bsSize="large">Full Report</Button>
   </Panel>
 );
 

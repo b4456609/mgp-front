@@ -77,8 +77,8 @@ export function getTestReport(page) {
     .map(k => esc(k) + '=' + esc(params[k]))
     .join('&');
 
-  return fetch('/serviceTest.json')
-  // return fetch(base + `/api/test/serviceTest?${query}`)
+  // return fetch('/serviceTest.json')
+  return fetch(base + `/api/test/report?${query}`)
     .then(errorHandle)
     .then(function (response) {
       return response.json();

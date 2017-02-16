@@ -20,9 +20,9 @@ class ReportSidebarContainer extends Component {
     return null;
   }
   getUATReport() {
-    const {reportData, reportType, showReportDetail} = this.props;
+    const {reportData, reportType, reportTimestamp} = this.props;
     if (reportData instanceof Object && reportType === 'uat' && reportData.length > 0) {
-      return (<UATReport data={reportData} showReport={showReportDetail} />);
+      return (<UATReport data={reportData} timestamp={reportTimestamp}/>);
     }
     return null;
   }
@@ -64,14 +64,17 @@ function mapStateToProps(state) {
   const reportIndex = state.app.reportSidebarIndex;
   let reportData = null;
   let reportType = '';
+  let reportTimestamp = 0;
   if (state.report instanceof Array && state.report.length > reportIndex) {
     reportData = state.report[reportIndex].report;
+    reportTimestamp = state.report[reportIndex].timestamp;
     reportType = state.report[reportIndex].type;
   }
   return {
     optionData,
     reportData,
     reportIndex,
+    reportTimestamp,
     reportSideBarIsFirst: state.app.reportSideBarIsFirst,
     reportSideBarIsLast: state.app.reportSideBarIsLast,
     reportType,
