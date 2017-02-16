@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Grid,
   Row,
   Col,
 } from 'react-bootstrap';
+import {connect} from 'react-redux';
+import FeatureFilesContainer from './components/document/FeatureFilesContainer';
+import {getDocument} from './actions'
 
-const DocumentPage = () => (
-  <Grid>
-    <Row>
-      <Col md={12}>
-        <h1>Document</h1>
-      </Col>
-    </Row>
-  </Grid>
-);
+class DocumentPage extends Component {
+  componentDidMount() {
+    this.props.dispatch(getDocument())
+  }
 
-export default DocumentPage;
+  render() {
+    return (
+      <Grid>
+        <Row>
+          <Col md={12}>
+            <FeatureFilesContainer />
+          </Col>
+        </Row>
+      </Grid>
+    );
+  }
+}
+
+
+export default connect()(DocumentPage);

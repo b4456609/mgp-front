@@ -9,7 +9,21 @@ import {
   getScenarioInfo,
   updateAppData,
   getTestReport,
+  getBDDDocument,
 } from '../api/mgp.js';
+
+export const BDD_DOC_LOADED = 'BDD_DOC_LOADED';
+export function getDocument(){
+  return (dispatch) => {
+    getBDDDocument()
+      .then((data) => {
+        dispatch({
+          type: BDD_DOC_LOADED,
+          data
+        })
+      })
+  }
+}
 
 export const SET_REPORT_SIDEBAR_INDEX = 'SET_REPORT_SIDEBAR_INDEX';
 export function setReportSidebarIndex(index){

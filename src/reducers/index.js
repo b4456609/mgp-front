@@ -9,6 +9,7 @@ import app from './app.js';
 import scenario from './scenario.js';
 import modal from './modal.js';
 import report from './report.js';
+import bddDoc from './bddDoc.js';
 
 const Reducers = combineReducers({
   app,
@@ -21,6 +22,7 @@ const Reducers = combineReducers({
   scenario,
   modal,
   report,
+  bddDoc,
 });
 
 export default Reducers;
