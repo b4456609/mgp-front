@@ -62,4 +62,11 @@ task configure() {
   }
 }
 ```
+Upload the service test results to mgp via this `curl` command
+```sh
+curl -X POST -H "Content-Type: multipart/form-data" \
+  -F "files=@easylearn_pack.json" \
+  -F "files=@easylearn_pack.md" \
+  "http://localhost:8080/api/test/serviceTest"
+```
 # UAT

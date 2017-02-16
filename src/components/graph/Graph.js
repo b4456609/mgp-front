@@ -288,7 +288,7 @@ function showError(){
 
 class Graph extends Component {
   componentDidMount() {
-    if ('serviceWithEndpointPair' in this.props.data) {
+    if (this.props.data instanceof Object && 'serviceWithEndpointPair' in this.props.data) {
       draw(this.props.data, this.props.dispatch);
       showError();
     }
@@ -302,7 +302,7 @@ class Graph extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if ('serviceWithEndpointPair' in this.props.data) {
+    if (this.props.data instanceof Object && 'serviceWithEndpointPair' in this.props.data) {
       draw(this.props.data, this.props.dispatch);
     }
     if (this.props.showCyclic) {

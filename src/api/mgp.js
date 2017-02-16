@@ -67,9 +67,18 @@ export function buildSwaggerURL(serviceName) {
   return `/swagger/index.html?url=${window.location.origin}/api/swagger/${serviceName}`;
 }
 
-export function getTestReport() {
+export function getTestReport(page) {
+  if (!page instanceof Number) { page = 0 }
+  let params = {
+    page
+  };
+  var esc = encodeURIComponent;
+  var query = Object.keys(params)
+    .map(k => esc(k) + '=' + esc(params[k]))
+    .join('&');
+
   return fetch('/serviceTest.json')
-  // return fetch(base + '/api/test/serviceTest')
+  // return fetch(base + `/api/test/serviceTest?${query}`)
     .then(errorHandle)
     .then(function (response) {
       return response.json();

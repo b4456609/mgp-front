@@ -19,13 +19,13 @@ export function setReportSidebarIndex(index){
   }
 }
 
-export const SERVICE_TEST_DATA_LOADED = 'SERVICE_TEST_DATA_LOADED';
-export function getTestReportData(){
+export const REPORT_TEST_DATA_LOADED = 'REPORT_TEST_DATA_LOADED';
+export function getTestReportData(page){
   return (dispatch) => {
-    getTestReport()
+    getTestReport(page)
       .then((data)=>{
         dispatch({
-          type: SERVICE_TEST_DATA_LOADED,
+          type: REPORT_TEST_DATA_LOADED,
           data
         })
       })

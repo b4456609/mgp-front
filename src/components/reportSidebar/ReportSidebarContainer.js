@@ -8,8 +8,7 @@ import moment from 'moment';
 class ReportSidebarContainer extends Component {
   constructor(props) {
     super();
-    console.log(props)
-    props.getReportData();
+    props.getReportData(props.page);
   }
   getReport() {
     if (this.props.reportData instanceof Object && this.props.reportData.length > 0) {
@@ -18,12 +17,22 @@ class ReportSidebarContainer extends Component {
     return null;
   }
   render() {
+    const {
+      reportSideBarIsFirst,
+      reportSideBarIsLast,
+      page,
+      getReportData
+    } = this.props;
     return (
       <div>
         <Option
           data={this.props.optionData}
           index={this.props.reportIndex}
           selectReport={this.props.selectReport}
+          isFirst={reportSideBarIsFirst}
+          isLast={reportSideBarIsLast}
+          page={page}
+          getReportData={getReportData}
         />
         {this.getReport()}
       </div>
@@ -47,6 +56,9 @@ function mapStateToProps(state) {
     optionData,
     reportData,
     reportIndex,
+    reportSideBarIsFirst: state.app.reportSideBarIsFirst,
+    reportSideBarIsLast: state.app.reportSideBarIsLast,
+    page:state.app.reportSideBarpage,
   };
 }
 
@@ -55,8 +67,8 @@ function mapDispatchToProps(dispatch) {
     selectReport: (index) => {
       dispatch(setReportSidebarIndex(index));
     },
-    getReportData: () => {
-      dispatch(getTestReportData());
+    getReportData: (page) => {
+      dispatch(getTestReportData(page));
     },
     showReportDetail: (title, body) => {
       dispatch(showModal(title, body, 'markdown'));
