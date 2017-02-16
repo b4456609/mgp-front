@@ -70,3 +70,55 @@ curl -X POST -H "Content-Type: multipart/form-data" \
   "http://localhost:8080/api/test/serviceTest"
 ```
 # UAT
+
+Glue setting in args need to be set to package name. See [Cucumber JVM Java Gradle Example](https://github.com/cucumber/cucumber-jvm/tree/master/examples/java-gradle).
+
+Run with `./gradlew clean cucumber`
+
+The Test result will in `build/cucumber` folder.
+```groovy
+plugins {
+    id "java"
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.0.1'
+    compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
+    compile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.5'
+
+}
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'html:build/cucumber/html','--plugin', 'json:build/cucumber/cucumber.json','--plugin', 'pretty','--plugin', 'usage:build/cucumber/usage.txt', '--glue', 'com.example', 'src/test/resources']
+        }
+    }
+}
+```
+Junit Runner
+```java
+@RunWith(Cucumber.class)
+@CucumberOptions(plugin = {"pretty"})
+public class RunCukesTest {
+
+}
+```
