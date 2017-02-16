@@ -6,6 +6,7 @@ import {
   Badge,
   Pager,
 } from 'react-bootstrap';
+import moment from 'moment';
 
 const Option = ({data, selectReport, index, isFirst, isLast, page, getReportData}) => {
   let previous = (
@@ -30,22 +31,20 @@ const Option = ({data, selectReport, index, isFirst, isLast, page, getReportData
   }
   return (
 
-    <Panel co
-      llapsible def
-      aultExpanded header="Test Information">
+    <Panel collapsible defaultExpanded header="Test Information">
       <ListGroup>
         {data.map((item, i) => {
           if (index === i) {
             return (
               <ListGroupItem key={item.timestamp} onClick={() => { selectReport(i); }} active>
-                {item.timestamp}
+                {moment(item.timestamp).format('lll')}
                 <Badge>{item.type}</Badge>
               </ListGroupItem>
             )
           }
           return (
             <ListGroupItem key={item.timestamp} onClick={() => { selectReport(i); }} >
-              {item.timestamp}
+              {moment(item.timestamp).format('lll')}
               <Badge>{item.type}</Badge>
             </ListGroupItem>
           )
@@ -61,7 +60,7 @@ const Option = ({data, selectReport, index, isFirst, isLast, page, getReportData
 
 Option.propTypes = {
   data: React.PropTypes.arrayOf(React.PropTypes.shape({
-    timestamp: React.PropTypes.string.isRequired,
+    timestamp: React.PropTypes.number.isRequired,
     type: React.PropTypes.string.isRequired,
   })).isRequired,
 }

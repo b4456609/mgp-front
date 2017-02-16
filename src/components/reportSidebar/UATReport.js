@@ -7,10 +7,10 @@ import {
   Glyphicon
 } from 'react-bootstrap';
 
-const Option = ({data, showReport}) => (
+const UATReport = ({data}) => (
   <Panel collapsible defaultExpanded header="Full Report">
     <ListGroup>
-      <h3>Provider Report</h3>
+      <h3>Scenario Report</h3>
       {
         data.map((item, i) => {
           let result = (
@@ -24,9 +24,9 @@ const Option = ({data, showReport}) => (
             </Label>);
           }
           return (
-            <ListGroupItem key={i} onClick={() => { showReport('Report', item.report) }}>
-              <Glyphicon style={{ color: 'grey' }} glyph="file" />
-              {` ${item.provider}`}
+            <ListGroupItem key={i}>
+              <Glyphicon style={{ color: 'grey' }} glyph="tasks" />
+              {` ${item.name}`}
               {result}
             </ListGroupItem>
           )
@@ -36,4 +36,4 @@ const Option = ({data, showReport}) => (
   </Panel>
 );
 
-export default Option;
+export default UATReport;
