@@ -8,11 +8,16 @@ var endpoint = require('./endpoint')
 var scenario = require('./scenario')
 var report1 = require('./report1')
 var report0 = require('./report0')
+var bdd = require('./bdd')
 
 app.use(cors())
 
 app.post('/api/update', function (req, res) {
   res.send();
+})
+
+app.get('/api/bdd', function (req, res) {
+  res.send(bdd);
 })
 
 app.get('/api/graph/visual', function (req, res) {

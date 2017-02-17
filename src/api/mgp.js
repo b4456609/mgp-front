@@ -86,8 +86,8 @@ export function getTestReport(page) {
 }
 
 export function getBDDDocument(){
-  return fetch('/feature.json')
-  // return fetch(base + `/api/bdd`)
+  // return fetch('/feature.json')
+  return fetch(base + `/api/bdd`)
     .then((res) => res.json());
 }
 
