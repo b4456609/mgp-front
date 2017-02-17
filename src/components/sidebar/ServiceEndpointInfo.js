@@ -43,8 +43,8 @@ const ServiceEndpointInfo = ({data}) => (
       </Tab>
     </Tabs>
     <h5>Scenario Annoation</h5>
-    <Highlight className="java">
-      {`@${data.id}`}
+    <Highlight className="gherkin">
+      {`@${data.id.split(' ').join('_')}`}
     </Highlight>
   </Panel>
 );
