@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Panel, FormGroup, Checkbox} from 'react-bootstrap';
+import {Panel, FormGroup, Checkbox, Button} from 'react-bootstrap';
 
 class GraphOptions extends Component {
   getCyclic(){
@@ -27,6 +27,7 @@ class GraphOptions extends Component {
         <FormGroup>
           {this.getCyclic()}
         </FormGroup>
+        <Button bsStyle="primary" bsSize="large" onClick={()=>{this.props.refresh()}}>Refresh</Button>
       </Panel>
     );
   }

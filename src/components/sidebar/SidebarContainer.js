@@ -6,7 +6,7 @@ import ServiceCallInfo from './ServiceCallInfo.js';
 import SidebarAlert from './SidebarAlert.js';
 import GraphOptions from './GraphOptions.js';
 import ScenarioInfo from './ScenarioInfo.js';
-import {setCyclic, showModal} from '../../actions';
+import {setCyclic, showModal, refresh} from '../../actions';
 
 class SidebarContainer extends Component {
   getEndpointInfo() {
@@ -47,10 +47,10 @@ class SidebarContainer extends Component {
     return null;
   }
   render() {
-    let {setCyclic,showCyclic} = this.props;
+    let {setCyclic,showCyclic, refresh} = this.props;
     return (
       <div>
-        <GraphOptions showCyclic={showCyclic} setCyclic={setCyclic}/>
+        <GraphOptions showCyclic={showCyclic} setCyclic={setCyclic} refresh={refresh}/>
         {this.getAlert()}
         {this.getEndpointInfo()}
         {this.getServiceInfo()}
@@ -113,6 +113,9 @@ function mapDispatchToProps(dispatch) {
     },
     showFeature: (title, body) => {
       dispatch(showModal(title, body, 'code'));
+    },
+    refresh: ()=>{
+      dispatch(refresh());
     }
   };
 }

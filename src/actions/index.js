@@ -46,6 +46,12 @@ export function getTestReportData(page){
   }
 }
 
+export function refresh(){
+  return (dispatch) => {
+    dispatch(updateAppDataAndRefresh())
+  }
+}
+
 export function updateAppDataAndRefresh() {
   return (dispatch) => {
     updateAppData()
