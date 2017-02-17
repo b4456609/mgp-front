@@ -104,7 +104,6 @@ configurations {
     }
 }
 
-
 task regression() {
     dependsOn assemble, compileTestJava
     doLast {
