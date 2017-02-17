@@ -33,8 +33,7 @@ class HowPage extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={2}></Col>
-          <Col md={8}>
+          <Col mdOffset={2} md={8}>
             <div dangerouslySetInnerHTML={{ __html: html }}></div>
           </Col>
         </Row>

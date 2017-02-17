@@ -65,7 +65,7 @@ class SettingPage extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={12}>
+          <Col mdOffset={2} md={8}>
             <h1>Setting</h1>
             <form>
               <FormGroup controlId="formBasicText" validationState={this.getValidationState()}>

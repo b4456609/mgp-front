@@ -12,10 +12,10 @@ class ReportPage extends Component {
     return (
       <Grid fluid>
         <Row>
-          <Col md={7} lg={9}>
+          <Col xs={12} sm={7} md={8} lg={9}>
             <GraphContainer />
           </Col>
-          <Col md={5} lg={3}>
+          <Col xs={12} sm={5} md={4} lg={3}>
             <ReportSidebarContainer />
           </Col>
         </Row>
