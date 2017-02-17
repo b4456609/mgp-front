@@ -277,10 +277,10 @@ function hideCyclic() {
   });
 }
 
-function showError(){
+function showError() {
   let errors = document.querySelectorAll('.error');
-  [].forEach.call(errors, (item)=>{
-    if(item.className.baseVal.includes('error')){
+  [].forEach.call(errors, (item) => {
+    if (item.className.baseVal.includes('error')) {
       item.setAttribute('style', "stroke: red; stroke-width: 4px;")
     }
   });
@@ -288,22 +288,23 @@ function showError(){
 
 class Graph extends Component {
   componentDidMount() {
-    if (this.props.data instanceof Object && 'serviceWithEndpointPair' in this.props.data) {
-      draw(this.props.data, this.props.dispatch);
+    let data = JSON.parse(this.props.dataString);
+    if (data instanceof Object && 'serviceWithEndpointPair' in data) {
+      draw(data, this.props.dispatch);
       showError();
     }
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextProps.data !== this.props.data) {
-      var myNode = document.getElementById("graph");
-      myNode.innerHTML = '';
-    }
+    var myNode = document.getElementById("graph");
+    myNode.innerHTML = '';
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.data instanceof Object && 'serviceWithEndpointPair' in this.props.data) {
-      draw(this.props.data, this.props.dispatch);
+    console.log('component did update')
+    let data = JSON.parse(this.props.dataString);
+    if (data instanceof Object && 'serviceWithEndpointPair' in data) {
+      draw(data, this.props.dispatch);
     }
     if (this.props.showCyclic) {
       showCyclic();
@@ -312,6 +313,10 @@ class Graph extends Component {
       hideCyclic();
     }
     showError();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.dataString !== this.props.dataString
   }
 
   render() {

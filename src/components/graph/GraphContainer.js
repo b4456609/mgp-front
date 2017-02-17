@@ -16,7 +16,7 @@ function mapStateToProps(state) {
     data = state.graph.data;
   }
   return {
-    data,
+    dataString: JSON.stringify(data),
     showCyclic: state.app.showCyclic,
   };
 }
