@@ -73,7 +73,8 @@ curl -X POST -H "Content-Type: multipart/form-data" \
 
 Glue setting in args need to be set to package name. See [Cucumber JVM Java Gradle Example](https://github.com/cucumber/cucumber-jvm/tree/master/examples/java-gradle).
 
-Run with `./gradlew clean cucumber`
+Run with `./gradlew clean regression`
+Run with `./gradlew clean rest`
 
 The Test result will in `build/cucumber` folder.
 ```groovy
@@ -103,13 +104,31 @@ configurations {
     }
 }
 
-task cucumber() {
+
+task regression() {
     dependsOn assemble, compileTestJava
     doLast {
+        def argsConfig = ['--plugin', 'html:output','--plugin', 'json:build/cucumber/cucumber.json','--plugin', 'pretty','--plugin', 'progress:build/cucumber/cucumber.txt','--plugin', 'usage:build/cucumber/usage.txt', '--glue', 'soselab.easylearn', 'src/test/resources']
+        argsConfig.addAll(['--tags', '@easylearn_pack_endpoint_/_POST,@easylearn_pack_endpoint_/_GET'])
+        println(argsConfig)
         javaexec {
             main = "cucumber.api.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'html:build/cucumber/html','--plugin', 'json:build/cucumber/cucumber.json','--plugin', 'pretty','--plugin', 'usage:build/cucumber/usage.txt', '--glue', 'com.example', 'src/test/resources']
+            args = argsConfig
+        }
+    }
+}
+
+task rest() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        def argsConfig = ['--plugin', 'html:output','--plugin', 'json:build/cucumber/cucumber.json','--plugin', 'pretty','--plugin', 'progress:build/cucumber/cucumber.txt','--plugin', 'usage:build/cucumber/usage.txt', '--glue', 'soselab.easylearn', 'src/test/resources']
+        argsConfig.addAll(['--tags', '~@easylearn_pack_endpoint_/_POST','--tags','~@easylearn_pack_endpoint_/_GET'])
+        println(argsConfig)
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = argsConfig
         }
     }
 }
