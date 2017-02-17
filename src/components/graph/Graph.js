@@ -6,6 +6,7 @@ import arrow from './arrow'
 import { buildLink, buildLine, buildNode, setSimulation } from './element'
 import { concateData } from './util'
 import { showCyclic, hideCyclic } from './cyclic'
+import zoom from './zoom'
 
 const d3 = window.d3;
 
@@ -15,6 +16,13 @@ function draw(graph, dispatch) {
   var svg = d3.select("svg");
   var width = document.querySelector('div.col-lg-9').offsetWidth;
   var height = window.innerHeight - 80;
+
+  let g = svg.append('g');
+  //zoom function
+  zoom(svg, g);
+
+  //for lagecy code
+  svg = g;
 
   simulation = force(height, width);
   setSimulation(simulation);
