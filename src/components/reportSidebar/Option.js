@@ -39,14 +39,14 @@ const Option = ({data, selectReport, index, isFirst, isLast, page, getReportData
           if (index === i) {
             return (
               <ListGroupItem key={item.timestamp} onClick={() => { selectReport(i); }} active>
-                {moment(item.timestamp).format('lll')}
+                {moment(item.timestamp).format('M/D HH:mm:ss')}
                 <Badge>{item.type}</Badge>
               </ListGroupItem>
             )
           }
           return (
             <ListGroupItem key={item.timestamp} onClick={() => { selectReport(i); }} >
-              {moment(item.timestamp).format('lll')}
+              {moment(item.timestamp).format('M/D HH:mm:ss')}
               <Badge>{item.type}</Badge>
             </ListGroupItem>
           )
