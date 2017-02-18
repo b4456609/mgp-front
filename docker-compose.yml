@@ -53,13 +53,13 @@ services:
       - mongo
       - neo
   mongo:
-    image: mongo
+    image: mongo:3.4.2
     ports:
     - "27017:27017"
     networks:
       - inside
   neo:
-    image: neo4j
+    image: neo4j:3.1.1
     ports:
       - "7878:7474"
       - "7687:7687"
