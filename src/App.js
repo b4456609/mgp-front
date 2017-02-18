@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Navbar,
   Nav,
@@ -19,15 +19,25 @@ class App extends Component {
             <Navbar.Brand>
               <a href="#">Microservices Graph Platform</a>
             </Navbar.Brand>
-            <Navbar.Toggle/>
+            <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <NavItem eventKey={1} onClick={()=>{browserHistory.push('/');}} >Graph</NavItem>
-              <NavItem eventKey={3} onClick={()=>{browserHistory.push('/report');}} >Report</NavItem>
-              <NavItem eventKey={3} onClick={()=>{browserHistory.push('/document');}} >Document</NavItem>
-              <NavItem eventKey={4} onClick={()=>{browserHistory.push('/how');}} >How</NavItem>
-              <NavItem eventKey={2} onClick={()=>{browserHistory.push('/setting');}} >Setting</NavItem>
+              <NavItem eventKey={1}
+                onClick={() => { browserHistory.push('/'); }}
+                active={window.location.pathname === '/'}>Graph</NavItem>
+              <NavItem eventKey={3}
+                onClick={() => { browserHistory.push('/report'); }}
+                active={window.location.pathname === '/report'} >Report</NavItem>
+              <NavItem eventKey={3}
+                onClick={() => { browserHistory.push('/document'); }}
+                active={window.location.pathname === '/document'} >Document</NavItem>
+              <NavItem eventKey={4}
+                onClick={() => { browserHistory.push('/how'); }}
+                active={window.location.pathname === '/how'} >How</NavItem>
+              <NavItem eventKey={2}
+                onClick={() => { browserHistory.push('/setting'); }}
+                active={window.location.pathname === '/setting'} >Setting</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
