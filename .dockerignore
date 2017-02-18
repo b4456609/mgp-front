@@ -1,6 +1,8 @@
 node_modules
 .dockerignore
+.editorconfig
 Dockerfile
-docker-compose
+docker-compose.yml
 .git
 .gitignore
+ansible

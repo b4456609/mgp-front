@@ -1,0 +1,51 @@
+---
+- hosts: server
+  vars:
+    work_dir: /home/ubuntu/mgp
+  tasks:
+  - name: mgp update git project
+    git:
+      repo: git@bitbucket.org:BernieFan/mgp.git
+      dest: "{{ work_dir }}/mgp"
+      clone: yes
+      update: yes
+  - name: mgpback update git project
+    git:
+      repo: git@bitbucket.org:BernieFan/mgpback.git
+      dest: "{{ work_dir }}/mgpback"
+      clone: yes
+      update: yes
+  - name: mgp-cucumber-report update git project
+    git:
+      repo: git@bitbucket.org:BernieFan/mgp-cucumber-report.git
+      dest: "{{ work_dir }}/mgp-cucumber-report"
+      clone: yes
+      update: yes
+  - name: mgp-codegen update git project
+    git:
+      repo: git@bitbucket.org:BernieFan/mgp-codegen.git
+      dest: "{{ work_dir }}/mgp-codegen"
+      clone: yes
+      update: yes
+  - name: mgp-bdd update git project
+    git:
+      repo: git@bitbucket.org:BernieFan/mgp-bdd.git
+      dest: "{{ work_dir }}/mgp-bdd"
+      clone: yes
+      update: yes
+  - name: build mgpback spring boot
+    shell: ./gradlew bootRepackage
+    args:
+      chdir: "{{ work_dir }}/mgpback"
+  - name: build container
+    shell: docker-compose build
+    args:
+      chdir: "{{ work_dir }}/mgp"
+  - name: remove old container
+    shell: docker-compose down
+    args:
+      chdir: "{{ work_dir }}/mgp"
+  - name: run container
+    shell: docker-compose up -d
+    args:
+      chdir: "{{ work_dir }}/mgp"
