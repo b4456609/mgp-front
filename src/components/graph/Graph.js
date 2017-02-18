@@ -30,7 +30,7 @@ function draw(graph, dispatch) {
   //build svg arrow
   arrow(svg);
   //build arrow link
-  var link = buildLink(svg, graph.providerEndpointWithConsumerPair);
+  var link = buildLink(svg, graph.providerEndpointWithConsumerPair, dispatch);
 
   //concate line data
   let lineData = concateData(graph.serviceWithEndpointPair, graph.scenarioEndpointPair);
