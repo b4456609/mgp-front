@@ -49,6 +49,7 @@ services:
       - NEO4J_DB=http://neo:7474
       - CODEGEN_HOST=http://codegen:3001/
       - BDD_HOST=http://bdd:3005
+      - DEBUG_LEVEL=INFO
     depends_on:
       - mongo
       - neo
