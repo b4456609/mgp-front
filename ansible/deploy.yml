@@ -10,6 +10,7 @@
       clone: yes
       update: yes
   - name: mgpback update git project
+    tags: back
     git:
       repo: git@bitbucket.org:BernieFan/mgpback.git
       dest: "{{ work_dir }}/mgpback"
@@ -34,18 +35,26 @@
       clone: yes
       update: yes
   - name: build mgpback spring boot
+    tags: back
     shell: ./gradlew bootRepackage
     args:
       chdir: "{{ work_dir }}/mgpback"
   - name: build container
+    tags: back
     shell: docker-compose build
     args:
       chdir: "{{ work_dir }}/mgp"
   - name: remove old container
+    tags:
+      - back
+      - re
     shell: docker-compose down
     args:
       chdir: "{{ work_dir }}/mgp"
   - name: run container
+    tags:
+      - back
+      - re
     shell: docker-compose up -d
     args:
       chdir: "{{ work_dir }}/mgp"
