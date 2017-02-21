@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
   data: state.service.map((i) => {
     return {
       name: i.id,
-      link: buildSwaggerURL(i.name)
+      link: buildSwaggerURL(i.id)
     }
   })
 });
