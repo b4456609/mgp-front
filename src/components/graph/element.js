@@ -1,13 +1,15 @@
 import { onNodeClick, onServiceCallClick } from '../../actions';
+import {showStyle} from './style';
+
 const d3 = window.d3;
 const color = d3.scaleOrdinal(d3.schemeCategory20);
 let simulation;
 
-export function setSimulation(sim){
+export function setSimulation(sim) {
   simulation = sim
 }
 
-export function buildLink(svg, link, dispatch) {
+export function buildLink(svg, link, dispatch, disableNodeHoverClick) {
   let linkEle = svg
     .selectAll(".call-link")
     .data(link)
@@ -16,11 +18,12 @@ export function buildLink(svg, link, dispatch) {
     .attr('class', function (d) {
       return "call-link " + d.className
     });
-
-  linkEle
-    .on('click', function (i) {
-      dispatch(onServiceCallClick(i.source.id + ' ' + i.target.id));
-    })
+  if(!disableNodeHoverClick){
+    linkEle
+      .on('click', function (i) {
+        dispatch(onServiceCallClick(i.source.id + ' ' + i.target.id));
+      })
+  }
   return linkEle;
 }
 
@@ -35,7 +38,7 @@ export function buildLine(svg, line) {
     });
 }
 
-export function buildNode(svg, nodes, dispatch) {
+export function buildNode(svg, nodes, dispatch, disableNodeHoverClick) {
 
   var group = svg
     .selectAll("g")
@@ -65,25 +68,28 @@ export function buildNode(svg, nodes, dispatch) {
       return d.label;
     });
 
-  circle
-    .on('mouseover', onMouseOver)
-    .on('mouseout', onMouseOut)
-    .call(d3.drag()
-      .on("start", dragstarted)
-      .on("drag", dragged)
-      .on("end", dragended));
+  if(!disableNodeHoverClick){
+    circle
+      .on('mouseover', onMouseOver)
+      .on('mouseout', onMouseOut)
+      .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
 
-  //click on endpoint, service and service call
-  circle
-    .on('click', function (i) {
-      dispatch(onNodeClick(i.id, i.group));
-    });
+    //click on endpoint, service and service call
+    circle
+      .on('click', function (i) {
+        dispatch(onNodeClick(i.id, i.group));
+      });
+  }
   return group;
 }
 
 
 
 function onMouseOver(obj, index, elementArray) {
+  showStyle(false, false);
   let classStringToken = obj.className.split(' ');
   for (let item of classStringToken) {
     if (item.includes('start')) {
@@ -100,6 +106,7 @@ function onMouseOver(obj, index, elementArray) {
 
 
 function onMouseOut(obj, index, elementArray) {
+  showStyle(true, true);
   let classStringToken = obj.className.split(' ');
   for (let item of classStringToken) {
     if (item.includes('start')) {

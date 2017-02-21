@@ -33,7 +33,6 @@ class SidebarContainer extends Component {
   }
   getScenarioInfo() {
     let {showScenario, scenarioData, showFeature} = this.props;
-    console.log(scenarioData);
     if (showScenario) {
       return (<ScenarioInfo data={scenarioData} showFeature={showFeature}/>)
     }

@@ -3,6 +3,9 @@ import Graph from './Graph.js';
 
 function mapStateToProps(state) {
   let data = {};
+  let disableNodeHoverClick = false;
+  let showCyclic = state.app.showCyclic;
+
   if (window.location.pathname.includes('report')) {
     if (state.report instanceof Array && state.report.length > state.app.reportSidebarIndex) {
       data = JSON.parse(state.report[state.app.reportSidebarIndex].visual);
@@ -11,13 +14,17 @@ function mapStateToProps(state) {
     else {
       data = {};
     }
+
+    disableNodeHoverClick = true;
+    showCyclic = false;
   }
   else {
     data = state.graph.data;
   }
   return {
     dataString: JSON.stringify(data),
-    showCyclic: state.app.showCyclic,
+    showCyclic,
+    disableNodeHoverClick
   };
 }
 
