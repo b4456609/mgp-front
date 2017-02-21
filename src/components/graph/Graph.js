@@ -7,7 +7,8 @@ import { buildLink, buildLine, buildNode, setSimulation } from './element'
 import { concateData } from './util'
 import { showCyclic, hideCyclic } from './cyclic'
 import zoom from './zoom'
-import {setUnTest, show, hide} from './style'
+import { setUnTest, show, hide } from './style'
+import { Glyphicon } from 'react-bootstrap'
 
 const d3 = window.d3;
 
@@ -53,31 +54,13 @@ function draw(graph, dispatch, disableNodeHoverClick) {
 
 }
 
-function getOnly(data, type){
-  let result = {};
-    if (type === 'path'){
-      result.nodes = data.nodes.filter(i=> i.className.includes('group'));
-      result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('group'));
-      result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i=> i.className.includes('group'));
-      result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i=> i.className.includes('group'));
-    }
-    else if(type === 'cyclic'){
-      result.nodes = data.nodes.filter(i=> i.className.includes('cyclic'));
-      result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('cyclic'));
-      result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i=> i.className.includes('cyclic'));
-      result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i=> i.className.includes('cyclic'));
-    }
-    else{
-      result = data;
-    }
-    return result;
-}
-
 class Graph extends Component {
   componentDidMount() {
-    let {type, dataString, dispatch, disableNodeHoverClick, showUnTest} = this.props;
+    let {dataString, dispatch, disableNodeHoverClick, showUnTest} = this.props;
     let data = JSON.parse(dataString);
-    data = getOnly(data, type);
+    if ('nodes' in data && data.nodes.length === 0) {
+      this.setState({ none: true });
+    }
     if (data instanceof Object && 'serviceWithEndpointPair' in data) {
       draw(data, dispatch, disableNodeHoverClick);
     }
@@ -95,14 +78,14 @@ class Graph extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     var myNode = document.getElementById("graph");
-    myNode.innerHTML = '';
+    if (myNode)
+      myNode.innerHTML = '';
   }
 
   componentDidUpdate(prevProps, prevState) {
     console.log('component did update')
     let {dataString, dispatch, disableNodeHoverClick, type, showUnTest} = this.props;
     let data = JSON.parse(dataString);
-    data = getOnly(data, type);
     if (data instanceof Object && 'serviceWithEndpointPair' in data) {
       draw(data, dispatch, disableNodeHoverClick);
     }
@@ -135,12 +118,20 @@ class Graph extends Component {
   }
 
   render() {
+    let result = (<svg id="graph" width='100%' height={window.innerHeight - 80} />);
+    let data = JSON.parse(this.props.dataString);
+    if (data && 'nodes' in data && data.nodes.length === 0)
+      result = (
+        <div className="text-center" style={{ fontSize: '60px', color: 'grey', paddingTop: '50px' }}>
+          <Glyphicon glyph="exclamation-sign" />
+          <h1>Empty Node</h1>
+        </div>);
     return (
       <div>
         <style id="graphStyle">
           {}
         </style>
-        <svg id="graph" width='100%' height={window.innerHeight - 80} />
+        {result}
       </div>
     );
   }

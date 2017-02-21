@@ -7,11 +7,11 @@ export function setUnTest(sut){
   _showUnTest=sut;
 }
 
-export function showStyle(showError, showUnTest){
+export function showStyle(showError){
   let ele = document.querySelector('#graphStyle');
   let result = '';
   if(showError) result += errorStyle;
-  if(showUnTest) result += unTestStyle;
+  if(_showUnTest) result += unTestStyle;
   ele.innerHTML = result;
 }
 
