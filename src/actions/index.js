@@ -75,8 +75,12 @@ export function updateAppDataAndRefresh() {
 }
 
 export const GRAPH_LOADED = 'GRAPH_LOADED';
+export const GRAPH_LOADING = 'GRAPH_LOADING';
 export function getGraphData() {
   return (dispatch) => {
+    dispatch({
+      type: GRAPH_LOADING,
+    })
     getGraph()
       .then((data) => {
         dispatch({
