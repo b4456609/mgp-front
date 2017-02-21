@@ -56,9 +56,8 @@ class SettingPage extends Component {
   }
 
   onSubmitClick() {
-    if (this.getValidationState() === 'error')
-      return;
-    this.props.dispatch(onSaveSetting(this.state.pactHostUrl,this.state.bddGitUrl))
+    if (this.getValidationState() === 'success' || this.getBDDValidattionState() === 'success')
+      this.props.dispatch(onSaveSetting(this.state.pactHostUrl,this.state.bddGitUrl))
   }
 
   render() {
@@ -87,6 +86,11 @@ class SettingPage extends Component {
               disabled={this.props.isLoading}
               onClick={this.onSubmitClick}>
               {this.props.isLoading?'Loading...':'Submit'}
+            </Button>
+            <h1>Data</h1>
+            <Button bsStyle="primary" bsSize="large"
+              onClick={()=>{}}>
+              {'Clean Data'}
             </Button>
           </Col>
         </Row>
