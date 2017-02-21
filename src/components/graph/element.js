@@ -56,9 +56,9 @@ export function buildNode(svg, nodes, dispatch, disableNodeHoverClick) {
       if (d.group===1)
         return "#00BDEC"
       if (d.group === 2)
-        return "#008BC0"
+        return "#16768E"
       if (d.group === 3)
-        return "#DDE12C"
+        return "#E4AD0C"
       return color(d.group);
     })
     .attr('class', function (d) {
@@ -104,7 +104,7 @@ function onMouseOver(obj, index, elementArray) {
       let targetClass = item.substring(0, item.indexOf('-'));
       let groupElements = document.getElementsByClassName(targetClass);
       for (let ele of groupElements) {
-        ele.setAttribute('style', "stroke: blue; stroke-width: 4px;");
+        ele.setAttribute('style', "stroke: #EC7100; stroke-width: 4px;");
       }
     }
   }
