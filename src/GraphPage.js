@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import gears from './gears.svg'
 
 import {
   Grid,
@@ -12,7 +13,7 @@ import SidebarContainer from './components/sidebar/SidebarContainer.js';
 const GraphPage = ({graphLoading}) => {
   let result = (<GraphContainer />)
   if(graphLoading){
-    result = (<h1>Loading</h1>);
+    result = (<div style={{width: '100%', textAlign: 'center', paddingTop: '150px'}}><img src={gears} alt="Loading"/></div>);
   }
   return (
   <Grid fluid>
