@@ -7,7 +7,7 @@ import { buildLink, buildLine, buildNode, setSimulation } from './element'
 import { concateData } from './util'
 import { showCyclic, hideCyclic } from './cyclic'
 import zoom from './zoom'
-import {showStyle} from './style'
+import {setUnTest, show, hide} from './style'
 
 const d3 = window.d3;
 
@@ -75,19 +75,20 @@ function getOnly(data, type){
 
 class Graph extends Component {
   componentDidMount() {
-    let {type, dataString, dispatch, disableNodeHoverClick, showCyclic} = this.props;
+    let {type, dataString, dispatch, disableNodeHoverClick, showUnTest} = this.props;
     let data = JSON.parse(dataString);
     data = getOnly(data, type);
     if (data instanceof Object && 'serviceWithEndpointPair' in data) {
       draw(data, dispatch, disableNodeHoverClick);
-      showStyle(true, true);
     }
-    if (showCyclic) {
-      showStyle(false, false);
+
+    setUnTest(showUnTest);
+    if (this.props.showCyclic) {
+      hide();
       showCyclic();
     }
     else {
-      showStyle(true, true);
+      show();
       hideCyclic();
     }
   }
@@ -99,22 +100,33 @@ class Graph extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     console.log('component did update')
-    let {dataString, dispatch, disableNodeHoverClick, type} = this.props;
+    let {dataString, dispatch, disableNodeHoverClick, type, showUnTest} = this.props;
     let data = JSON.parse(dataString);
     data = getOnly(data, type);
     if (data instanceof Object && 'serviceWithEndpointPair' in data) {
       draw(data, dispatch, disableNodeHoverClick);
     }
-    showStyle(true, true);
-  }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.showCyclic) {
-      showStyle(false, false);
+    setUnTest(showUnTest);
+    if (this.props.showCyclic) {
+      hide();
       showCyclic();
     }
     else {
-      showStyle(true, true);
+      show();
+      hideCyclic();
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+
+    setUnTest(nextProps.showUnTest);
+    if (nextProps.showCyclic) {
+      hide();
+      showCyclic();
+    }
+    else {
+      show();
       hideCyclic();
     }
     const isChange = nextProps.dataString !== this.props.dataString;

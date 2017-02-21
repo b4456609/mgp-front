@@ -5,6 +5,7 @@ function mapStateToProps(state) {
   let data = {};
   let disableNodeHoverClick = false;
   let showCyclic = state.app.showCyclic;
+  let showUnTest = state.app.showUnTest;
   let type = state.app.graphType;
 
   if (window.location.pathname.includes('report')) {
@@ -25,6 +26,7 @@ function mapStateToProps(state) {
   return {
     dataString: JSON.stringify(data),
     showCyclic,
+    showUnTest,
     disableNodeHoverClick,
     type
   };

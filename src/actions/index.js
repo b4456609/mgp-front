@@ -12,6 +12,13 @@ import {
   getBDDDocument,
 } from '../api/mgp.js';
 
+export const SHOW_UNTEST = 'SHOW_UNTEST';
+export function showUnTest(show){
+  return {
+    type: SHOW_UNTEST,
+    show
+  }
+}
 export const CHANGE_GRAPH_TYPE = 'CHANGE_GRAPH_TYPE';
 export function changeGraphType(graphType){
   return {

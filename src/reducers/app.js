@@ -5,10 +5,12 @@ import {
   CHANGE_GRAPH_TYPE,
   GRAPH_LOADING,
   GRAPH_LOADED,
+  SHOW_UNTEST
 } from '../actions';
 
 const app = (state = {
   showCyclic: false,
+  showUnTest: false,
   graphType: 'all',
   graphLoading: false,
   reportSidebarIndex: 0,
@@ -17,6 +19,8 @@ const app = (state = {
   reportSideBarpage: 0,
 }, action) => {
   switch (action.type) {
+    case SHOW_UNTEST:
+      return {...state, showUnTest: action.show}
     case GRAPH_LOADING:
       return {...state, graphLoading: true}
     case GRAPH_LOADED:
