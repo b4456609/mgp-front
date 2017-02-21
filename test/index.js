@@ -2,6 +2,7 @@ var express = require('express')
 var cors = require('cors')
 var app = express()
 var visual = require('./visual')
+var cyclicUnTestVisual = require('./cyclicUnTestVisual')
 var visualbig = require('./visual-big')
 var serviceCall = require('./serviceCall')
 var service = require('./service')
@@ -22,7 +23,7 @@ app.get('/api/bdd', function (req, res) {
 })
 
 app.get('/api/graph/visual', function (req, res) {
-  res.send(visual)
+  res.send(cyclicUnTestVisual)
 })
 
 app.get('/api/graph/serviceCall', function (req, res) {
