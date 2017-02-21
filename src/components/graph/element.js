@@ -53,6 +53,12 @@ export function buildNode(svg, nodes, dispatch, disableNodeHoverClick) {
     .attr('cy', 0)
     .attr("r", 50)
     .attr("fill", function (d) {
+      if (d.group===1)
+        return "#00BDEC"
+      if (d.group === 2)
+        return "#008BC0"
+      if (d.group === 3)
+        return "#DDE12C"
       return color(d.group);
     })
     .attr('class', function (d) {
