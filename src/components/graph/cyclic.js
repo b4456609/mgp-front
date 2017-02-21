@@ -1,7 +1,7 @@
 export function showCyclic() {
-  let serviceLinks = document.querySelectorAll('svg .servicelink');
-  let nodes = document.querySelectorAll('svg circle');
-  let serviceCallLinks = document.querySelectorAll('svg .call-link');
+  let serviceLinks = document.querySelectorAll('.servicelink');
+  let nodes = document.querySelectorAll('circle');
+  let serviceCallLinks = document.querySelectorAll('.call-link');
 
   console.log(serviceLinks, nodes, serviceLinks);
 
