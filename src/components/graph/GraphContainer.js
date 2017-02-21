@@ -5,6 +5,7 @@ function mapStateToProps(state) {
   let data = {};
   let disableNodeHoverClick = false;
   let showCyclic = state.app.showCyclic;
+  let type = state.app.graphType;
 
   if (window.location.pathname.includes('report')) {
     if (state.report instanceof Array && state.report.length > state.app.reportSidebarIndex) {
@@ -24,7 +25,8 @@ function mapStateToProps(state) {
   return {
     dataString: JSON.stringify(data),
     showCyclic,
-    disableNodeHoverClick
+    disableNodeHoverClick,
+    type
   };
 }
 

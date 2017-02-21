@@ -27,6 +27,8 @@ class GraphOptions extends Component {
         <FormGroup>
           {this.getCyclic()}
         </FormGroup>
+        <Button bsStyle="primary" bsSize="large" onClick={()=>{this.props.setGraphType('path')}}>setPath</Button>
+        <Button bsStyle="primary" bsSize="large" onClick={()=>{this.props.setGraphType('cyclic')}}>setCyclic</Button>
         <Button bsStyle="primary" bsSize="large" onClick={()=>{this.props.refresh()}}>Refresh</Button>
       </Panel>
     );

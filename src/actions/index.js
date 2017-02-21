@@ -12,6 +12,14 @@ import {
   getBDDDocument,
 } from '../api/mgp.js';
 
+export const CHANGE_GRAPH_TYPE = 'CHANGE_GRAPH_TYPE';
+export function changeGraphType(graphType){
+  return {
+    type: CHANGE_GRAPH_TYPE,
+    graphType
+  }
+}
+
 export const BDD_DOC_LOADED = 'BDD_DOC_LOADED';
 export function getDocument(){
   return (dispatch) => {

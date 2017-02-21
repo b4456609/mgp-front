@@ -53,10 +53,31 @@ function draw(graph, dispatch, disableNodeHoverClick) {
 
 }
 
+function getOnly(data, type){
+  let result = {};
+    if (type === 'path'){
+      result.nodes = data.nodes.filter(i=> i.className.includes('group'));
+      result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('group'));
+      result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i=> i.className.includes('group'));
+      result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i=> i.className.includes('group'));
+    }
+    else if(type === 'cyclic'){
+      result.nodes = data.nodes.filter(i=> i.className.includes('cyclic'));
+      result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('cyclic'));
+      result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i=> i.className.includes('cyclic'));
+      result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i=> i.className.includes('cyclic'));
+    }
+    else{
+      result = data;
+    }
+    return result;
+}
+
 class Graph extends Component {
   componentDidMount() {
-    let {dataString, dispatch, disableNodeHoverClick, showCyclic} = this.props;
+    let {type, dataString, dispatch, disableNodeHoverClick, showCyclic} = this.props;
     let data = JSON.parse(dataString);
+    data = getOnly(data, type);
     if (data instanceof Object && 'serviceWithEndpointPair' in data) {
       draw(data, dispatch, disableNodeHoverClick);
       showStyle(true, true);
@@ -78,8 +99,9 @@ class Graph extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     console.log('component did update')
-    let {dataString, dispatch, disableNodeHoverClick} = this.props;
+    let {dataString, dispatch, disableNodeHoverClick, type} = this.props;
     let data = JSON.parse(dataString);
+    data = getOnly(data, type);
     if (data instanceof Object && 'serviceWithEndpointPair' in data) {
       draw(data, dispatch, disableNodeHoverClick);
     }
@@ -95,7 +117,9 @@ class Graph extends Component {
       showStyle(true, true);
       hideCyclic();
     }
-    return nextProps.dataString !== this.props.dataString
+    const isChange = nextProps.dataString !== this.props.dataString;
+
+    return isChange || this.props.type !== nextProps.type;
   }
 
   render() {
