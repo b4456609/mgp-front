@@ -5,10 +5,10 @@ import {
   CHANGE_GRAPH_TYPE,
   GRAPH_LOADING,
   GRAPH_LOADED,
-  SHOW_UNTEST
+  SHOW_UNTEST,
+  DELETE_ALL_DATA
 } from '../actions';
-
-const app = (state = {
+let initState = {
   showCyclic: false,
   showUnTest: false,
   graphType: 'all',
@@ -17,7 +17,8 @@ const app = (state = {
   reportSideBarIsFirst: true,
   reportSideBarIsLast: true,
   reportSideBarpage: 0,
-}, action) => {
+};
+const app = (state = initState, action) => {
   switch (action.type) {
     case SHOW_UNTEST:
       return {...state, showUnTest: action.show}
@@ -44,6 +45,8 @@ const app = (state = {
         ...state,
         graphType: action.graphType
       }
+    case DELETE_ALL_DATA:
+      return initState;
     default:
       return state;
   }

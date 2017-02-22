@@ -13,7 +13,7 @@ const SwaggerFiles = ({data}) => {
         <Row>
           {data.map((i) => {
             return (
-              <Col xs={12} sm={6} md={4} lg={3} className="text-center">
+              <Col key={i.name} xs={12} sm={6} md={4} lg={3} className="text-center">
                 <p>
                   <Button target="_blank" href={i.link} bsStyle="primary" bsSize="large">
                     {i.name}

@@ -10,17 +10,30 @@ import {
   updateAppData,
   getTestReport,
   getBDDDocument,
+  deleteAllData
 } from '../api/mgp.js';
 
+export const DELETE_ALL_DATA = 'DELETE_ALL_DATA';
+export function deleteAPPData() {
+  return (dispatch) => {
+    deleteAllData()
+      .then(() => {
+        dispatch({
+          type: DELETE_ALL_DATA,
+        });
+      });
+  }
+}
+
 export const SHOW_UNTEST = 'SHOW_UNTEST';
-export function showUnTest(show){
+export function showUnTest(show) {
   return {
     type: SHOW_UNTEST,
     show
   }
 }
 export const CHANGE_GRAPH_TYPE = 'CHANGE_GRAPH_TYPE';
-export function changeGraphType(graphType){
+export function changeGraphType(graphType) {
   return {
     type: CHANGE_GRAPH_TYPE,
     graphType
@@ -28,7 +41,7 @@ export function changeGraphType(graphType){
 }
 
 export const BDD_DOC_LOADED = 'BDD_DOC_LOADED';
-export function getDocument(){
+export function getDocument() {
   return (dispatch) => {
     getBDDDocument()
       .then((data) => {
@@ -41,7 +54,7 @@ export function getDocument(){
 }
 
 export const SET_REPORT_SIDEBAR_INDEX = 'SET_REPORT_SIDEBAR_INDEX';
-export function setReportSidebarIndex(index){
+export function setReportSidebarIndex(index) {
   return {
     type: SET_REPORT_SIDEBAR_INDEX,
     index
@@ -49,10 +62,10 @@ export function setReportSidebarIndex(index){
 }
 
 export const REPORT_TEST_DATA_LOADED = 'REPORT_TEST_DATA_LOADED';
-export function getTestReportData(page){
+export function getTestReportData(page) {
   return (dispatch) => {
     getTestReport(page)
-      .then((data)=>{
+      .then((data) => {
         dispatch({
           type: REPORT_TEST_DATA_LOADED,
           data
@@ -61,7 +74,7 @@ export function getTestReportData(page){
   }
 }
 
-export function refresh(){
+export function refresh() {
   return (dispatch) => {
     dispatch(updateAppDataAndRefresh())
   }
@@ -70,7 +83,7 @@ export function refresh(){
 export function updateAppDataAndRefresh() {
   return (dispatch) => {
     updateAppData()
-      .then(()=>{
+      .then(() => {
         dispatch(getGraphData());
         dispatch(getSettingData());
         dispatch(getServiceCallInfoData());
@@ -163,7 +176,7 @@ export function onNodeClick(id, group) {
 }
 
 export const ON_SERVICE_CALL_CLICK = 'ON_SERVICE_CALL_CLICK';
-export function onServiceCallClick(id){
+export function onServiceCallClick(id) {
   return {
     type: ON_SERVICE_CALL_CLICK,
     id
@@ -179,8 +192,8 @@ export function getSettingData() {
           type: SETTING_LOADED,
           data
         });
-      }).catch(function(error) {
-          console.log('error', error)
+      }).catch(function (error) {
+        console.log('error', error)
       })
   };
 }
@@ -198,17 +211,17 @@ export function onSaveSetting(pactHostUrl, bddGitUrl) {
     updateSetting(pactHostUrl, bddGitUrl)
       .then((response) => {
         if (response.ok) {
-          dispatch({type: SUCCESS_UPLOAD_SETTING});
+          dispatch({ type: SUCCESS_UPLOAD_SETTING });
         }
-        else{
-          dispatch({type: FAIL_UPLOAD_SETTING});
+        else {
+          dispatch({ type: FAIL_UPLOAD_SETTING });
         }
       });
   };
 }
 
 export const ON_CYCLIC_CHANGE = 'ON_CYCLIC_CHANGE';
-export function setCyclic(checked){
+export function setCyclic(checked) {
   return {
     type: ON_CYCLIC_CHANGE,
     checked
