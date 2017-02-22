@@ -1,5 +1,5 @@
 import { onNodeClick, onServiceCallClick } from '../../actions';
-import {hide, show} from './style';
+import { hide, show } from './style';
 
 const d3 = window.d3;
 const color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -18,7 +18,7 @@ export function buildLink(svg, link, dispatch, disableNodeHoverClick) {
     .attr('class', function (d) {
       return "call-link " + d.className
     });
-  if(!disableNodeHoverClick){
+  if (!disableNodeHoverClick) {
     linkEle
       .on('click', function (i) {
         dispatch(onServiceCallClick(i.source.id + ' ' + i.target.id));
@@ -53,7 +53,7 @@ export function buildNode(svg, nodes, dispatch, disableNodeHoverClick) {
     .attr('cy', 0)
     .attr("r", 50)
     .attr("fill", function (d) {
-      if (d.group===1)
+      if (d.group === 1)
         return "#00BDEC"
       if (d.group === 2)
         return "#16768E"
@@ -74,14 +74,7 @@ export function buildNode(svg, nodes, dispatch, disableNodeHoverClick) {
       return d.label;
     });
 
-  if(!disableNodeHoverClick){
-    circle
-      .on('mouseover', onMouseOver)
-      .on('mouseout', onMouseOut)
-      .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
+  if (!disableNodeHoverClick) {
 
     //click on endpoint, service and service call
     circle
@@ -89,6 +82,13 @@ export function buildNode(svg, nodes, dispatch, disableNodeHoverClick) {
         dispatch(onNodeClick(i.id, i.group));
       });
   }
+  circle
+    .on('mouseover', onMouseOver)
+    .on('mouseout', onMouseOut)
+    .call(d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended));
   return group;
 }
 
