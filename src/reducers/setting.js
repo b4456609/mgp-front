@@ -1,11 +1,16 @@
-import {ON_SAVE_SETTING, SETTING_LOADED, SUCCESS_UPLOAD_SETTING,} from '../actions';
-const init = {
+import {
+  ON_SAVE_SETTING,
+  SETTING_LOADED,
+  SUCCESS_UPLOAD_SETTING,
+  DELETE_ALL_DATA
+} from '../actions';
+const initState = {
   isLoading: false,
   isPactNotSet: true,
   pactHostUrl: '',
   bddGitUrl: '',
 }
-const setting = (state = init, action) => {
+const setting = (state = initState, action) => {
   switch (action.type) {
     case SETTING_LOADED:
       return Object.assign({}, state, {
@@ -25,7 +30,9 @@ const setting = (state = init, action) => {
         bddGitUrl: action.bddGitUrl,
       })
     case SUCCESS_UPLOAD_SETTING:
-      return Object.assign({}, state, {isLoading: false})
+      return Object.assign({}, state, { isLoading: false })
+    case DELETE_ALL_DATA:
+      return initState;
     default:
       return state;
   }

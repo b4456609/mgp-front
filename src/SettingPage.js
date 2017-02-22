@@ -10,7 +10,7 @@ import {
   Button,
   HelpBlock
 } from 'react-bootstrap';
-import {onSaveSetting} from './actions';
+import {onSaveSetting, deleteAPPData} from './actions';
 
 //url pattern
 const urlRegex = '^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$';
@@ -57,7 +57,7 @@ class SettingPage extends Component {
 
   onSubmitClick() {
     if (this.getValidationState() === 'success' || this.getBDDValidattionState() === 'success')
-      this.props.dispatch(onSaveSetting(this.state.pactHostUrl,this.state.bddGitUrl))
+      this.props.saveSetting(this.state.pactHostUrl,this.state.bddGitUrl);
   }
 
   render() {
@@ -89,7 +89,7 @@ class SettingPage extends Component {
             </Button>
             <h1>Data</h1>
             <Button bsStyle="primary" bsSize="large"
-              onClick={()=>{}}>
+              onClick={()=>{this.props.cleanData();}}>
               {'Clean Data'}
             </Button>
           </Col>
@@ -104,5 +104,14 @@ export default connect((state) => (
     pactHostUrl: state.setting.pactHostUrl,
     bddGitUrl: state.setting.bddGitUrl,
     isLoading: state.setting.isLoading,
+  }
+), (dispatch) => (
+  {
+    cleanData: () => {
+      dispatch(deleteAPPData());
+    },
+    saveSetting: (pactHostUrl, bddGitUrl) => {
+      dispatch(onSaveSetting(pactHostUrl,bddGitUrl));
+    }
   }
 ))(SettingPage);

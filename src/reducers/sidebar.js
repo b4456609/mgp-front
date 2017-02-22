@@ -1,5 +1,9 @@
-import {ON_NODE_CLICK, ON_SERVICE_CALL_CLICK} from '../actions';
-const init = {
+import {
+  ON_NODE_CLICK,
+  ON_SERVICE_CALL_CLICK,
+  DELETE_ALL_DATA
+} from '../actions';
+const initState = {
   showEndpoint: false,
   showServiceCall: false,
   showService: false,
@@ -9,7 +13,7 @@ const init = {
   serviceCallId: 'easylearn-pack easylearn-user /pack GET',
   scenarioId: '',
 }
-const sidebar = (state = init, action) => {
+const sidebar = (state = initState, action) => {
   switch (action.type) {
     case ON_NODE_CLICK:
       //endpoint node
@@ -21,7 +25,7 @@ const sidebar = (state = init, action) => {
           showScenario: false,
           endpointId: action.id
         });
-      } else if (action.group === 2){
+      } else if (action.group === 2) {
         //the node is service node
         return Object.assign({}, state, {
           showServiceCall: false,
@@ -30,7 +34,7 @@ const sidebar = (state = init, action) => {
           showScenario: false,
           serviceId: action.id
         });
-      } else if (action.group === 3){
+      } else if (action.group === 3) {
         //the node is service node
         return Object.assign({}, state, {
           showServiceCall: false,
@@ -49,6 +53,8 @@ const sidebar = (state = init, action) => {
         showScenario: false,
         serviceCallId: action.id,
       })
+    case DELETE_ALL_DATA:
+      return initState;
     default:
       return state;
   }

@@ -3,6 +3,12 @@ if (process.env.NODE_ENV !== 'production') {
   base = 'http://localhost:8080'
 }
 
+export function deleteAllData() {
+  return fetch(base + '/api/delete', {
+    method: 'DELETE',
+  });
+}
+
 export function getGraph() {
   // return fetch('/test1.json').then(function(response) {
   return fetch(base + '/api/graph/visual').then(function (response) {
