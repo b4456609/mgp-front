@@ -1,5 +1,5 @@
 import { onNodeClick, onServiceCallClick } from '../../actions';
-import {showStyle} from './style';
+import {hide, show} from './style';
 
 const d3 = window.d3;
 const color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -95,7 +95,7 @@ export function buildNode(svg, nodes, dispatch, disableNodeHoverClick) {
 
 
 function onMouseOver(obj, index, elementArray) {
-  showStyle(false, false);
+  hide();
   let classStringToken = obj.className.split(' ');
   for (let item of classStringToken) {
     if (item.includes('start')) {
@@ -112,7 +112,7 @@ function onMouseOver(obj, index, elementArray) {
 
 
 function onMouseOut(obj, index, elementArray) {
-  showStyle(true, true);
+  show();
   let classStringToken = obj.className.split(' ');
   for (let item of classStringToken) {
     if (item.includes('start')) {

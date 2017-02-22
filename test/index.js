@@ -11,8 +11,10 @@ var scenario = require('./scenario')
 var report1 = require('./report1')
 var report0 = require('./report0')
 var bdd = require('./bdd')
+var morgan = require('morgan')
 
 app.use(cors())
+app.use(morgan('combined'))
 
 app.post('/api/update', function (req, res) {
   res.send();
@@ -23,7 +25,7 @@ app.get('/api/bdd', function (req, res) {
 })
 
 app.get('/api/graph/visual', function (req, res) {
-  res.send(cyclicUnTestVisual)
+  res.send(visual)
 })
 
 app.get('/api/graph/serviceCall', function (req, res) {
@@ -61,7 +63,10 @@ app.post('/api/setting', function (req, res) {
   res.send();
 })
 
+app.delete('/api/delete', function (req, res) {
+  res.send();
+})
 
 app.listen(8080, function () {
-  console.log('Example app listening on port 8080!')
+  console.log('MGP Fake Backend app listening on port 8080!')
 })
