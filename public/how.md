@@ -1,11 +1,64 @@
 # MCA
 
-# Upload
-Upload MPD file to server.
+## Upload
+### Upload MPD file to server
+After pass the Junit Test. The MPD file would generate at `<project folder>/build/mpd/mpd.json`. Upload the mpd file to `http://localhost:3500/api/upload`.
+
+#### HTTP Request
+Content-Type:
+`multipart/form-data`
+
+Form:
+
+| Key | Value |
+|-----|------|
+| file | < path to the file >  |
+
+Curl Example
 ``` sh
-curl -i -X POST \\
-  -H "Content-Type: multipart/form-data" \\
-  -F "file=@./mpd.json" http://localhost/api/upload
+curl -i -X POST \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@./mpd.json" \
+  http://localhost:3500/api/upload
+```
+### Upload Service Test File to server
+After pass the Service Test. The json file would generate at `<project folder>/build/cucumber/cucumber.json`. Upload the mpd file to `http://localhost:3500/api/test/serviceTest`.
+#### HTTP Request
+Content-Type:
+`multipart/form-data`
+
+Form:
+
+| Key | Value |
+|-----|------|
+| files | < path to the files >  |
+
+Curl Example
+``` sh
+curl -X POST \
+  -H "Content-Type: multipart/form-data" \
+  -F "files=@easylearn_pack.md" \
+  -F "files=@easylearn_test.md" \
+  http://localhost:3500/api/test/serviceTest
+```
+### Upload MPD file to server
+After pass the Service Test. The json file would generate at `<project folder>/build/cucumber/cucumber.json`. Upload the mpd file to `http://localhost:3500/api/test/uat`.
+#### HTTP Request
+Content-Type:
+`multipart/form-data`
+
+Form:
+
+| Key | Value |
+|-----|------|
+| files | < path to the file >  |
+
+Curl Example
+``` sh
+curl -i -X POST \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@./uat.json" \
+  http://localhost:3500/api/test/uat
 ```
 
 # Service Test

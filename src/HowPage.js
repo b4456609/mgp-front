@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import marked from 'marked';
 import {
   Grid,
@@ -27,6 +28,18 @@ class HowPage extends Component {
         html =marked(res);
         self.forceUpdate();
       })
+  }
+
+  componentDidMount() {
+    let ele = ReactDOM.findDOMNode(this);
+    let tables = ele.querySelector('table');
+    tables.className = 'table table-bordered';
+  }
+
+  componentDidUpdate() {
+    let ele = ReactDOM.findDOMNode(this);
+    let tables = ele.querySelectorAll('table');
+    [].forEach.call(tables, (t) => {t.className = 'table table-bordered';});
   }
 
   render() {
