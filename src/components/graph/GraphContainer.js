@@ -2,24 +2,30 @@ import { connect } from 'react-redux';
 import Graph from './Graph.js';
 
 
-function getOnly(data, type){
+function getOnly(data, type) {
   let result = {};
-    if (type === 'path'){
-      result.nodes = data.nodes.filter(i=> i.className.includes('group'));
-      result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('group'));
-      result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i=> i.className.includes('group'));
-      result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i=> i.className.includes('group'));
-    }
-    else if(type === 'cyclic'){
-      result.nodes = data.nodes.filter(i=> i.className.includes('cyclic'));
-      result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('cyclic'));
-      result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i=> i.className.includes('cyclic'));
-      result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i=> i.className.includes('cyclic'));
-    }
-    else{
-      result = data;
-    }
-    return result;
+  if (type === 'path') {
+    result.nodes = data.nodes.filter(i => i.className.includes('group'));
+    result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('group'));
+    result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i => i.className.includes('group'));
+    result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i => i.className.includes('group'));
+  }
+  else if (type === 'cyclic') {
+    result.nodes = data.nodes.filter(i => i.className.includes('cyclic'));
+    result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('cyclic'));
+    result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i => i.className.includes('cyclic'));
+    result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i => i.className.includes('cyclic'));
+  }
+  else if (type === 'cyclicEnhance') {
+    result.nodes = data.nodes.filter(i => i.className.includes('cyclic-enhance'));
+    result.providerEndpointWithConsumerPair = data.providerEndpointWithConsumerPair.filter(i => i.className.includes('cyclic-enhance'));
+    result.serviceWithEndpointPair = data.serviceWithEndpointPair.filter(i => i.className.includes('cyclic-enhance'));
+    result.scenarioEndpointPair = data.scenarioEndpointPair.filter(i => i.className.includes('cyclic-enhance'));
+  }
+  else {
+    result = data;
+  }
+  return result;
 }
 
 function mapStateToProps(state) {

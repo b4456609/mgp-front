@@ -25,7 +25,7 @@ app.get('/api/bdd', function (req, res) {
 })
 
 app.get('/api/graph/visual', function (req, res) {
-  res.send(visual)
+  res.send(cyclicUnTestVisual)
 })
 
 app.get('/api/graph/serviceCall', function (req, res) {
