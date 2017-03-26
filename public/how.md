@@ -193,3 +193,10 @@ public class RunCukesTest {
 
 }
 ```
+Upload uat test with 
+
+```sh
+curl -X POST -H "Content-Type: multipart/form-data" \
+  -F "file=@cucumber0325.json" \
+  "http://140.121.102.164:4000/api/test/uat"
+```
