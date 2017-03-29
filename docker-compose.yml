@@ -35,7 +35,7 @@ services:
     networks:
       - inside
   api:
-    build: ../mgpback
+    build: ../mgp-back
     ports:
       - "8080:8080"
     networks:
