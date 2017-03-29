@@ -52,8 +52,8 @@ class GraphOptions extends Component {
         <Nav justified bsStyle="pills">
           <NavItem onClick={() => { this.props.setGraphType('all') }} active={this.props.graphType === 'all'}>Normal</NavItem>
           <NavItem onClick={() => { this.props.setGraphType('path') }} active={this.props.graphType === 'path'}>Path</NavItem>
-          <NavItem onClick={() => { this.props.setGraphType('cyclic') }} active={this.props.graphType === 'cyclic'}>Cyclic</NavItem>
-          <NavItem onClick={() => { this.props.setGraphType('cyclicEnhance') }} active={this.props.graphType === 'cyclicEnhance'}>Cyclic+</NavItem>
+          <NavItem onClick={() => { this.props.setGraphType('cyclic') }} active={this.props.graphType === 'cyclic'}>W-Cyclic</NavItem>
+          <NavItem onClick={() => { this.props.setGraphType('cyclicEnhance') }} active={this.props.graphType === 'cyclicEnhance'}>S-Cyclic</NavItem>
         </Nav>
         <hr />
         <Button bsStyle="primary" bsSize="large" onClick={() => { this.props.refresh() }}>Refresh</Button>
