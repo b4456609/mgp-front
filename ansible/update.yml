@@ -1,37 +1,12 @@
 ---
 - name: mgp update git project
   git:
-    repo: git@bitbucket.org:BernieFan/mgp.git
-    dest: "{{ work_dir }}/mgp"
-    clone: yes
-    update: yes
-- name: mgpback update git project
-  tags: back
-  git:
-    repo: git@bitbucket.org:BernieFan/mgpback.git
-    dest: "{{ work_dir }}/mgpback"
-    clone: yes
-    update: yes
-- name: mgp-cucumber-report update git project
-  git:
-    repo: git@bitbucket.org:BernieFan/mgp-cucumber-report.git
-    dest: "{{ work_dir }}/mgp-cucumber-report"
-    clone: yes
-    update: yes
-- name: mgp-codegen update git project
-  git:
-    repo: git@bitbucket.org:BernieFan/mgp-codegen.git
-    dest: "{{ work_dir }}/mgp-codegen"
-    clone: yes
-    update: yes
-- name: mgp-bdd update git project
-  git:
-    repo: git@bitbucket.org:BernieFan/mgp-bdd.git
-    dest: "{{ work_dir }}/mgp-bdd"
+    repo: git@github.com:b4456609/mgp.git
+    dest: "{{ work_dir }}"
     clone: yes
     update: yes
 - name: build mgpback spring boot
   tags: back
   shell: ./gradlew bootRepackage
   args:
-    chdir: "{{ work_dir }}/mgpback"
+    chdir: "{{ work_dir }}/mgp-back"
