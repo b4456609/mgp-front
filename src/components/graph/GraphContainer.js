@@ -48,8 +48,8 @@ function mapStateToProps(state) {
   }
   else {
     data = state.graph.data;
+    data = getOnly(data, type);
   }
-  data = getOnly(data, type);
   return {
     dataString: JSON.stringify(data),
     showCyclic,
