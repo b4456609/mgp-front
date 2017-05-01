@@ -1,11 +1,12 @@
 import React from 'react';
 import {
   Panel,
+  Button,
   Table
 } from 'react-bootstrap';
 import Highlight from 'react-highlight';
 
-const ServiceCallInfo = ({data}) => (
+const ServiceCallInfo = ({data, pactUrl}) => (
     <Panel collapsible defaultExpanded header="Service Call Information">
       <Table striped bordered condensed hover responsive>
         <tbody>
@@ -22,6 +23,7 @@ const ServiceCallInfo = ({data}) => (
       <Highlight className='json'>
         {data.pact}
       </Highlight>
+    <Button target="_blank" href={`${pactUrl}pacts/provider/${data.provider}/consumer/${data.consumer}/latest`} bsStyle="primary" bsSize="large">Open In Pact Broker</Button>
     </Panel>
     );
 

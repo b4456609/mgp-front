@@ -25,9 +25,9 @@ class SidebarContainer extends Component {
     return result;
   }
   getServiceCallInfo() {
-    let {showServiceCall, serviceCallData, } = this.props;
+    let {showServiceCall, serviceCallData, pactUrl} = this.props;
     if (showServiceCall) {
-      return (<ServiceCallInfo data={serviceCallData} />)
+      return (<ServiceCallInfo data={serviceCallData} pactUrl={pactUrl} />)
     }
     return null;
   }
@@ -72,6 +72,7 @@ function mapStateToProps(state) {
     showAlert: false,
     showCyclic: state.app.showCyclic,
     showUnTest: state.app.showUnTest,
+    pactUrl: state.setting.pactHostUrl
   };
   if (showService) {
     const service = state.service.find((i) => i.id === state.sidebar.serviceId);
