@@ -36,7 +36,7 @@ const UATReport = ({ data, timestamp }) => {
     let section = (
       <ListGroup key={j}>
         <OverlayTrigger placement="left" overlay={tooltip}>
-          <ListGroupItem header={`Run Iteration ${j}`} target="_blank" href={getCucumberReportURL(timestamp) + '?index=' + (j - 1)} />
+          <ListGroupItem header={`Run Iteration ${j}`} target="_blank" href={`${getCucumberReportURL(timestamp)}/index/${j - 1}`} />
         </OverlayTrigger>
         {data
           .filter((item) => item.runNumber === j)
@@ -52,8 +52,6 @@ const UATReport = ({ data, timestamp }) => {
           })}
       </ListGroup>)
     list.push(section)
-    // list.push(
-    //   <Button target="_blank" href={getCucumberReportURL(timestamp) + '?index=' + (j - 1)} bsStyle="primary" bsSize="large">Full Report</Button>);
   }
   return (
     <Panel collapsible defaultExpanded header="UAT Report">
