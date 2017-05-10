@@ -9,7 +9,7 @@ class GraphOptions extends Component {
           onChange={(i) => { this.props.setCyclic(i.target.checked) }}
           defaultChecked
           inline>
-          show Cyclic
+          Show Cyclic
           </Checkbox>
       );
     }
@@ -17,7 +17,7 @@ class GraphOptions extends Component {
       <Checkbox
         onChange={(i) => { this.props.setCyclic(i.target.checked) }}
         inline>
-        show Cyclic
+        Show Cyclic
       </Checkbox>
     );
   }
@@ -45,6 +45,7 @@ class GraphOptions extends Component {
       <Panel collapsible defaultExpanded header="Graph Options">
         <FormGroup>
           {this.getCyclic()}
+          <br/>
           {this.getUnTest()}
         </FormGroup>
         <hr />
