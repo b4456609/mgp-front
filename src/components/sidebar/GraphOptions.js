@@ -28,7 +28,7 @@ class GraphOptions extends Component {
           onChange={(i) => { this.props.setUnTest(i.target.checked) }}
           defaultChecked
           inline>
-          Show Untest Service Call
+          Show Untested Service Call
           </Checkbox>
       );
     }
@@ -36,7 +36,7 @@ class GraphOptions extends Component {
       <Checkbox
         onChange={(i) => { this.props.setUnTest(i.target.checked) }}
         inline>
-          Show Untest Service Call
+          Show Untested Service Call
       </Checkbox>
     );
   }
