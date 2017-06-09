@@ -9,7 +9,7 @@ class GraphOptions extends Component {
           onChange={(i) => { this.props.setCyclic(i.target.checked) }}
           defaultChecked
           inline>
-          Show Cyclic
+          Show Cyclic Dependency
           </Checkbox>
       );
     }
@@ -17,7 +17,7 @@ class GraphOptions extends Component {
       <Checkbox
         onChange={(i) => { this.props.setCyclic(i.target.checked) }}
         inline>
-        Show Cyclic
+        Show Cyclic Dependency
       </Checkbox>
     );
   }
@@ -50,11 +50,11 @@ class GraphOptions extends Component {
         </FormGroup>
         <hr />
         <h4>Graph Type</h4>
-        <Nav justified bsStyle="pills">
+        <Nav stacked bsStyle="pills">
           <NavItem onClick={() => { this.props.setGraphType('all') }} active={this.props.graphType === 'all'}>Normal</NavItem>
           <NavItem onClick={() => { this.props.setGraphType('path') }} active={this.props.graphType === 'path'}>Path</NavItem>
-          <NavItem onClick={() => { this.props.setGraphType('cyclic') }} active={this.props.graphType === 'cyclic'}>W-Cyclic</NavItem>
-          <NavItem onClick={() => { this.props.setGraphType('cyclicEnhance') }} active={this.props.graphType === 'cyclicEnhance'}>S-Cyclic</NavItem>
+          <NavItem onClick={() => { this.props.setGraphType('cyclic') }} active={this.props.graphType === 'cyclic'}>Weak Cyclic Dependency</NavItem>
+          <NavItem onClick={() => { this.props.setGraphType('cyclicEnhance') }} active={this.props.graphType === 'cyclicEnhance'}>Strong Cyclic Dependency</NavItem>
         </Nav>
         <hr />
         <Button bsStyle="primary" bsSize="large" onClick={() => { this.props.refresh() }}>Refresh</Button>
